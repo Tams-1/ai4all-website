@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grupo Fani — AI4ALL Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --cyan: #00CFFF; --purple: #7B2FFF;
+  --cyan-soft: rgba(0,207,255,0.12); --purple-soft: rgba(123,47,255,0.12);
+  --bg: #000000; --bg2: #080810; --bg3: #0D0D1A; --bg4: #111122;
+  --border: rgba(255,255,255,0.07); --border-bright: rgba(255,255,255,0.14);
+  --text: #FFFFFF; --text2: rgba(255,255,255,0.60); --text3: rgba(255,255,255,0.30);
+  --grad: linear-gradient(90deg, #00CFFF, #7B2FFF);
+}
+body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
+
+/* NAV */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 20px 64px; background: rgba(0,0,0,0.75); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
+.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.logo-text { font-family: 'Syne', sans-serif; font-size: 17px; font-weight: 800; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: -0.3px; }
+.nav-divider { width: 1px; height: 20px; background: var(--border-bright); margin: 0 4px; }
+.nav-client { font-size: 13px; color: var(--text3); font-weight: 400; }
+.nav-back { font-size: 13px; color: var(--text2); text-decoration: none; transition: color .2s; }
+.nav-back:hover { color: var(--text); }
+
+/* PAGE HEADER */
+.page-header { padding: 140px 64px 80px; background: var(--bg); position: relative; overflow: hidden; }
+.page-header-bg { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse 60% 50% at 30% 50%, rgba(0,207,255,0.06) 0%, transparent 60%), radial-gradient(ellipse 50% 60% at 80% 50%, rgba(123,47,255,0.06) 0%, transparent 60%); }
+.page-header-grid { position: absolute; inset: 0; pointer-events: none; opacity: 0.03; background-image: linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px); background-size: 60px 60px; }
+.page-header-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; position: relative; }
+.eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--cyan); margin-bottom: 16px; }
+.page-header h1 { font-family: 'Syne', sans-serif; font-size: clamp(32px, 4vw, 52px); font-weight: 800; line-height: 1.1; letter-spacing: -2px; margin-bottom: 20px; }
+.grad-text { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.page-header p { font-size: 16px; color: var(--text2); line-height: 1.75; font-weight: 300; margin-bottom: 32px; }
+.btn-primary { display: inline-flex; align-items: center; gap: 8px; padding: 13px 26px; background: var(--grad); border: none; border-radius: 8px; color: #fff; font-size: 14px; font-weight: 600; cursor: pointer; font-family: 'DM Sans', sans-serif; text-decoration: none; transition: opacity .2s; }
+.btn-primary:hover { opacity: .85; }
+
+/* CLIENT CARD */
+.client-card { background: var(--bg3); border: 1px solid var(--border); border-radius: 20px; padding: 36px; display: flex; flex-direction: column; gap: 20px; }
+.client-logo-wrap { display: flex; align-items: center; gap: 16px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+.client-logo-wrap img { height: 56px; width: auto; filter: brightness(1.1); }
+.client-logo-label { font-size: 12px; color: var(--text3); letter-spacing: 1px; text-transform: uppercase; }
+.info-row { display: flex; gap: 14px; align-items: flex-start; }
+.info-icon { width: 34px; height: 34px; background: var(--cyan-soft); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 15px; }
+.info-label { font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text3); font-weight: 600; margin-bottom: 3px; }
+.info-value { font-size: 13px; color: var(--text2); line-height: 1.5; }
+
+/* SECTIONS */
+.section { padding: 90px 64px; max-width: 1100px; margin: 0 auto; }
+.section-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--cyan); margin-bottom: 14px; }
+.section-title { font-family: 'Syne', sans-serif; font-size: clamp(24px, 3vw, 38px); font-weight: 800; line-height: 1.15; letter-spacing: -1px; margin-bottom: 16px; }
+.section-sub { font-size: 16px; color: var(--text2); max-width: 520px; margin-bottom: 48px; line-height: 1.7; font-weight: 300; }
+
+/* HOW IT WORKS */
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border-radius: 18px; overflow: hidden; }
+.step { background: var(--bg3); padding: 36px 28px; position: relative; }
+.step-num { font-family: 'Syne', sans-serif; font-size: 56px; font-weight: 800; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; opacity: 0.2; position: absolute; top: 16px; right: 20px; line-height: 1; }
+.step-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; font-size: 20px; }
+.step h3 { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; margin-bottom: 10px; letter-spacing: -0.2px; }
+.step p { font-size: 14px; color: var(--text2); line-height: 1.65; }
+
+/* LEGAL LINKS */
+.legal-wrap { background: var(--bg2); padding: 90px 64px; }
+.legal-inner { max-width: 1100px; margin: 0 auto; }
+.legal-links { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 48px; }
+.legal-link { display: flex; align-items: center; gap: 16px; padding: 20px 28px; background: var(--bg3); border: 1px solid var(--border); border-radius: 14px; text-decoration: none; color: var(--text); transition: border-color .25s, transform .25s; position: relative; overflow: hidden; }
+.legal-link::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--grad); opacity: 0; transition: opacity .25s; }
+.legal-link:hover { border-color: rgba(0,207,255,0.25); transform: translateY(-2px); }
+.legal-link:hover::before { opacity: 1; }
+.legal-link-icon { font-size: 24px; }
+.legal-link-eyebrow { font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text3); font-weight: 600; margin-bottom: 4px; }
+.legal-link-title { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; }
+.legal-link-desc { font-size: 12px; color: var(--text3); margin-top: 2px; }
+
+/* FOOTER */
+footer { border-top: 1px solid var(--border); padding: 40px 64px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+.footer-left { font-size: 12px; color: var(--text3); line-height: 1.8; }
+.footer-right { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text3); }
+.footer-brand { font-size: 12px; font-weight: 600; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+@media (max-width: 768px) {
+  nav { padding: 16px 24px; }
+  .nav-client { display: none; }
+  .page-header { padding: 100px 24px 56px; }
+  .page-header-inner { grid-template-columns: 1fr; gap: 40px; }
+  .section, .legal-wrap { padding: 60px 24px; }
+  .steps { grid-template-columns: 1fr; }
+  footer { padding: 28px 24px; flex-direction: column; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="/index.html">
+    <svg width="28" height="28" viewBox="0 0 80 80" fill="none">
+      <defs><linearGradient id="ng" x1="0" y1="0" x2="80" y2="80" gradientUnits="userSpaceOnUse"><stop stop-color="#00CFFF"/><stop offset="1" stop-color="#7B2FFF"/></linearGradient></defs>
+      <rect x="18" y="18" width="44" height="44" rx="12" stroke="url(#ng)" stroke-width="4" fill="none"/>
+      <circle cx="29" cy="29" r="4" fill="url(#ng)"/><circle cx="51" cy="29" r="4" fill="url(#ng)"/>
+      <circle cx="29" cy="51" r="4" fill="url(#ng)"/><circle cx="51" cy="51" r="4" fill="url(#ng)"/>
+      <line x1="8" y1="8" x2="24" y2="24" stroke="url(#ng)" stroke-width="3" stroke-linecap="round"/>
+      <line x1="72" y1="8" x2="56" y2="24" stroke="url(#ng)" stroke-width="3" stroke-linecap="round"/>
+      <line x1="8" y1="72" x2="24" y2="56" stroke="url(#ng)" stroke-width="3" stroke-linecap="round"/>
+      <line x1="72" y1="72" x2="56" y2="56" stroke="url(#ng)" stroke-width="3" stroke-linecap="round"/>
+    </svg>
+    <span class="logo-text">AI4ALL Platform</span>
+  </a>
+  <div style="display:flex;align-items:center;gap:12px;">
+    <div class="nav-divider"></div>
+    <span class="nav-client">Grupo Fani</span>
+  </div>
+  <a class="nav-back" href="/index.html">← Página inicial</a>
+</nav>
+
+<div class="page-header">
+  <div class="page-header-bg"></div>
+  <div class="page-header-grid"></div>
+  <div class="page-header-inner">
+    <div>
+      <p class="eyebrow">Cliente AI4ALL Platform</p>
+      <h1>Grupo Fani<br><span class="grad-text">Franqueado O Boticário</span></h1>
+      <p>O Grupo Fani utiliza a AI4ALL Platform para comunicação automatizada com revendedoras via WhatsApp Business, de forma transparente e em conformidade com a LGPD.</p>
+      <a class="btn-primary" href="mailto:suporte@ai4allplatform.com">Entrar em contato →</a>
+    </div>
+    <div class="client-card">
+      <div class="client-logo-wrap">
+        <img src="../../assets/CP_Fani.png" alt="Grupo Fani">
+        <span class="client-logo-label">Página institucional</span>
+      </div>
+      <div class="info-row">
+        <div class="info-icon">🏢</div>
+        <div>
+          <div class="info-label">Razão Social</div>
+          <div class="info-value">ARPEL DISTRIBUIDORA DE COSMETICOS LTDA</div>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-icon">📋</div>
+        <div>
+          <div class="info-label">CNPJ</div>
+          <div class="info-value">15.746.172/0001-86</div>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-icon">📍</div>
+        <div>
+          <div class="info-label">Endereço</div>
+          <div class="info-value">Rua Paissandu — Centro<br>São Bernardo do Campo/SP — CEP 09721-240</div>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-icon">✉️</div>
+        <div>
+          <div class="info-label">Contato</div>
+          <div class="info-value">suporte@ai4allplatform.com</div>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-icon">📱</div>
+        <div>
+          <div class="info-label">Canal de atendimento</div>
+          <div class="info-value">WhatsApp Business (Meta Cloud API)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <p class="section-eyebrow">Como funciona</p>
+  <h2 class="section-title">Comunicação via WhatsApp</h2>
+  <p class="section-sub">O Grupo Fani utiliza automação inteligente para manter contato com revendedoras de forma personalizada e respeitosa.</p>
+  <div class="steps">
+    <div class="step">
+      <span class="step-num">1</span>
+      <div class="step-icon" style="background:var(--cyan-soft);color:var(--cyan);">✅</div>
+      <h3>Comunicação autorizada</h3>
+      <p>Enviamos mensagens apenas para revendedoras que forneceram seu contato e consentiram com o recebimento de comunicações do Grupo Fani.</p>
+    </div>
+    <div class="step">
+      <span class="step-num">2</span>
+      <div class="step-icon" style="background:rgba(60,95,255,0.12);color:#5C7FFF;">💬</div>
+      <h3>Conteúdo relevante</h3>
+      <p>Nossas mensagens tratam de oportunidades de negócio, campanhas promocionais d'O Boticário e suporte ao programa de revendas.</p>
+    </div>
+    <div class="step">
+      <span class="step-num">3</span>
+      <div class="step-icon" style="background:var(--purple-soft);color:#A855F7;">🚪</div>
+      <h3>Opt-out imediato</h3>
+      <p>Para parar de receber mensagens, responda <strong>SAIR</strong> a qualquer momento. Seu número é removido imediatamente, sem burocracia.</p>
+    </div>
+  </div>
+</div>
+
+<div class="legal-wrap">
+  <div class="legal-inner">
+    <p class="section-eyebrow">Documentos legais</p>
+    <h2 class="section-title">Transparência e conformidade</h2>
+    <p class="section-sub">Em conformidade com a LGPD e os requisitos da Meta/WhatsApp Business API, todos os documentos estão disponíveis publicamente.</p>
+    <div class="legal-links">
+      <a class="legal-link" href="privacy-policy.html">
+        <span class="legal-link-icon">🔒</span>
+        <div>
+          <div class="legal-link-eyebrow">Documento legal</div>
+          <div class="legal-link-title">Política de Privacidade</div>
+          <div class="legal-link-desc">LGPD · Controlador e operador · Direitos do titular</div>
+        </div>
+      </a>
+      <a class="legal-link" href="terms.html">
+        <span class="legal-link-icon">📄</span>
+        <div>
+          <div class="legal-link-eyebrow">Documento legal</div>
+          <div class="legal-link-title">Termos de Uso</div>
+          <div class="legal-link-desc">Condições do serviço · WhatsApp Business · Opt-out</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-left">
+    ARPEL DISTRIBUIDORA DE COSMETICOS LTDA · CNPJ 15.746.172/0001-86<br>
+    Rua Paissandu — Centro · São Bernardo do Campo/SP · suporte@ai4allplatform.com
+  </div>
+  <div class="footer-right">
+    Tecnologia <span class="footer-brand">AI4ALL Platform</span> · © 2026
+  </div>
+</footer>
+
+</body>
+</html>

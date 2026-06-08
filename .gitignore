@@ -1,0 +1,19 @@
+# Python tooling
+*.py
+__pycache__/
+*.pyc
+
+# Iteration screenshots
+iteration_*.png
+comparison_final.png
+final_screenshot.png
+hero_context.png
+best_params.json
+nodes.json
+
+# Backups
+*.backup.html
+
+# OS files
+.DS_Store
+Thumbs.db

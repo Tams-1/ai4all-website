@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Termos de Uso — Grupo Fani · AI4ALL Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --cyan: #00CFFF; --purple: #7B2FFF;
+  --cyan-soft: rgba(0,207,255,0.12); --purple-soft: rgba(123,47,255,0.12);
+  --bg: #000000; --bg2: #080810; --bg3: #0D0D1A; --bg4: #111122;
+  --border: rgba(255,255,255,0.07); --border-bright: rgba(255,255,255,0.14);
+  --text: #FFFFFF; --text2: rgba(255,255,255,0.60); --text3: rgba(255,255,255,0.30);
+  --grad: linear-gradient(90deg, #00CFFF, #7B2FFF);
+  --red: #FF4444;
+}
+body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 20px 64px; background: rgba(0,0,0,0.75); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
+.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.logo-text { font-family: 'Syne', sans-serif; font-size: 17px; font-weight: 800; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: -0.3px; }
+.nav-divider { width: 1px; height: 20px; background: var(--border-bright); margin: 0 4px; }
+.nav-client { font-size: 13px; color: var(--text3); }
+.nav-back { font-size: 13px; color: var(--text2); text-decoration: none; transition: color .2s; }
+.nav-back:hover { color: var(--text); }
+.doc-header { padding: 120px 64px 60px; background: var(--bg2); border-bottom: 1px solid var(--border); position: relative; overflow: hidden; }
+.doc-header-bg { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse 50% 80% at 80% 50%, rgba(123,47,255,0.05) 0%, transparent 60%); }
+.doc-header-inner { max-width: 860px; margin: 0 auto; position: relative; }
+.eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--cyan); margin-bottom: 14px; }
+.doc-header h1 { font-family: 'Syne', sans-serif; font-size: clamp(28px, 4vw, 44px); font-weight: 800; letter-spacing: -1.5px; line-height: 1.1; margin-bottom: 24px; }
+.grad-text { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.doc-meta { display: flex; gap: 24px; flex-wrap: wrap; }
+.doc-meta-item { font-size: 13px; color: var(--text3); padding: 6px 14px; background: var(--bg3); border: 1px solid var(--border); border-radius: 6px; }
+.doc-meta-item strong { color: var(--text2); font-weight: 500; }
+.doc-body { max-width: 860px; margin: 0 auto; padding: 64px; }
+.doc-body h2 { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 700; letter-spacing: -0.3px; color: var(--text); margin: 48px 0 16px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
+.doc-body h2:first-child { margin-top: 0; }
+.doc-body h3 { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; color: var(--text); margin: 24px 0 10px; }
+.doc-body p { font-size: 15px; color: var(--text2); line-height: 1.85; margin-bottom: 14px; font-weight: 300; }
+.doc-body ul { margin: 0 0 14px 0; list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.doc-body ul li { font-size: 15px; color: var(--text2); line-height: 1.75; font-weight: 300; padding-left: 18px; position: relative; }
+.doc-body ul li::before { content: '—'; position: absolute; left: 0; color: var(--cyan); font-size: 12px; top: 4px; }
+.doc-body strong { color: var(--text); font-weight: 500; }
+.doc-body a { color: var(--cyan); text-decoration: none; }
+.doc-body a:hover { text-decoration: underline; }
+.todo { color: var(--red) !important; font-weight: 500; }
+.highlight-box { background: var(--cyan-soft); border: 1px solid rgba(0,207,255,0.2); border-radius: 12px; padding: 18px 22px; margin: 20px 0; font-size: 14px; color: var(--text2); line-height: 1.7; }
+.highlight-box strong { color: var(--cyan); }
+footer { border-top: 1px solid var(--border); padding: 40px 64px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+.footer-left { font-size: 12px; color: var(--text3); line-height: 1.8; }
+.footer-right { font-size: 12px; color: var(--text3); }
+.footer-brand { font-weight: 600; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+@media (max-width: 768px) {
+  nav { padding: 16px 24px; } .nav-client { display: none; }
+  .doc-header { padding: 90px 24px 40px; }
+  .doc-body { padding: 40px 24px; }
+  footer { padding: 28px 24px; flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="/index.html">
+    <svg width="28" height="28" viewBox="0 0 80 80" fill="none">
+      <defs><linearGradient id="ng" x1="0" y1="0" x2="80" y2="80" gradientUnits="userSpaceOnUse"><stop stop-color="#00CFFF"/><stop offset="1" stop-color="#7B2FFF"/></linearGradient></defs>
+      <rect x="18" y="18" width="44" height="44" rx="12" stroke="url(#ng)" stroke-width="4" fill="none"/>
+      <circle cx="29" cy="29" r="4" fill="url(#ng)"/><circle cx="51" cy="29" r="4" fill="url(#ng)"/>
+      <circle cx="29" cy="51" r="4" fill="url(#ng)"/><circle cx="51" cy="51" r="4" fill="url(#ng)"/>
+      <line x1="8" y1="8" x2="24" y2="24" stroke="url(#ng)" stroke-width="3" stroke-linecap="round"/>
+      <line x1="72" y1="8" x2="56" y2="24" stroke="url(#ng)" stroke-width="3" stroke-linecap="round"/>
+      <line x1="8" y1="72" x2="24" y2="56" stroke="url(#ng)" stroke-width="3" stroke-linecap="round"/>
+      <line x1="72" y1="72" x2="56" y2="56" stroke="url(#ng)" stroke-width="3" stroke-linecap="round"/>
+    </svg>
+    <span class="logo-text">AI4ALL Platform</span>
+  </a>
+  <div style="display:flex;align-items:center;gap:12px;">
+    <div class="nav-divider"></div>
+    <span class="nav-client">Grupo Fani</span>
+  </div>
+  <a class="nav-back" href="index.html">← Voltar</a>
+</nav>
+
+<div class="doc-header">
+  <div class="doc-header-bg"></div>
+  <div class="doc-header-inner">
+    <p class="eyebrow">Grupo Fani · Documento Legal</p>
+    <h1>Termos de Uso e <span class="grad-text">Consentimento</span></h1>
+    <div class="doc-meta">
+      <div class="doc-meta-item"><strong>Versão</strong> 1.0</div>
+      <div class="doc-meta-item"><strong>Vigência</strong> 07 de junho de 2026</div>
+      <div class="doc-meta-item"><strong>Atualização</strong> 07 de junho de 2026</div>
+    </div>
+  </div>
+</div>
+
+<div class="doc-body">
+
+  <p>Estes Termos regulam o uso do sistema de comunicação via WhatsApp desenvolvido para reativação de revendedoras do Grupo Boticário, operado pelo Grupo Fani (franqueado identificado neste documento). Ao confirmar o recebimento de mensagens (opt-in), a revendedora declara ter lido e aceitado os presentes Termos.</p>
+
+  <h2>1. Das Partes</h2>
+  <ul>
+    <li><strong>Operador do sistema (Franqueado):</strong> ARPEL DISTRIBUIDORA DE COSMETICOS LTDA — CNPJ 15.746.172/0001-86</li>
+    <li><strong>Franqueadora:</strong> Boticário Franchising Ltda., CNPJ 75.748.257/0001-60, com sede em Curitiba/PR</li>
+    <li><strong>Revendedora (Usuária):</strong> pessoa física cadastrada na rede de revendedores do Grupo Boticário que consentiu com o recebimento de mensagens via WhatsApp</li>
+  </ul>
+
+  <h2>2. Objeto</h2>
+  <p>O presente instrumento regula as condições de uso do sistema de envio de mensagens via WhatsApp Business, cujo objetivo é a reativação comercial de revendedoras inativas da rede Boticário, mediante comunicações personalizadas sobre oportunidades de venda, promoções, campanhas e ações de ativação cadastral.</p>
+
+  <h2>3. Consentimento (Opt-in) e Condições de Envio</h2>
+  <h3>3.1 Opt-in</h3>
+  <p>O envio de mensagens está condicionado ao consentimento prévio e explícito da revendedora (opt-in). O opt-in é registrado com data, hora, canal e identidade da titular, e mantido para fins de comprovação de conformidade com a LGPD.</p>
+  <h3>3.2 Conteúdo das mensagens</h3>
+  <p>As mensagens enviadas serão:</p>
+  <ul>
+    <li>Elaboradas com base em templates previamente aprovados pelo Grupo Boticário e pela Meta Platforms</li>
+    <li>Relacionadas exclusivamente à atividade comercial da revendedora junto à rede Boticário</li>
+    <li>Não invasivas, respeitando os limites de frequência de envio estabelecidos pelo sistema</li>
+    <li>Identificadas claramente como originadas do Grupo Fani, franqueado Boticário</li>
+  </ul>
+  <h3>3.3 Volume e frequência</h3>
+  <p>O sistema aplica controle automático de volume (throttle) para evitar envios em massa desproporcionais. O volume máximo de envios respeita as políticas da Meta Platforms e as diretrizes do Grupo Boticário.</p>
+
+  <h2>4. Cancelamento (Opt-out)</h2>
+  <p>A revendedora pode cancelar o recebimento de mensagens a qualquer momento, sem necessidade de justificativa, sem custo e sem prejuízo ao seu cadastro ou às condições comerciais com o Grupo Boticário:</p>
+  <div class="highlight-box">
+    Responda <strong>SAIR</strong>, <strong>PARAR</strong> ou <strong>NÃO QUERO</strong> na conversa do WhatsApp, ou envie solicitação ao canal de atendimento indicado na Política de Privacidade. O cancelamento é processado imediatamente e nenhuma nova mensagem será enviada após o opt-out.
+  </div>
+
+  <h2>5. Dados Pessoais e Privacidade</h2>
+  <p>O tratamento de dados pessoais realizado no contexto deste sistema é descrito detalhadamente na <a href="privacy-policy.html">Política de Privacidade</a>, disponível em:</p>
+  <p><strong>ai4allplatform.com/clientes/grupo-fani/privacy-policy</strong></p>
+  <p>A Política de Privacidade é parte integrante destes Termos. Ao aceitar estes Termos, a revendedora declara também ter ciência da Política de Privacidade.</p>
+
+  <h2>6. Responsabilidades do Operador (Grupo Fani)</h2>
+  <ul>
+    <li>Enviar mensagens exclusivamente para revendedoras que forneceram opt-in válido</li>
+    <li>Utilizar os dados pessoais apenas para as finalidades previstas na Política de Privacidade</li>
+    <li>Manter os dados protegidos com medidas técnicas e organizacionais adequadas</li>
+    <li>Processar solicitações de opt-out e direitos dos titulares dentro dos prazos legais</li>
+    <li>Notificar o Grupo Boticário e as titulares sobre qualquer incidente de segurança que envolva dados pessoais, no prazo máximo de 48 horas</li>
+    <li>Agir em conformidade com a LGPD, o Manual de Operações e o Anexo I do Grupo Boticário</li>
+  </ul>
+
+  <h2>7. Responsabilidades da Plataforma Meta</h2>
+  <p>O WhatsApp Business é uma plataforma de propriedade da Meta Platforms, Inc. O uso do canal está sujeito aos Termos de Serviço e à Política de Privacidade da Meta:</p>
+  <ul>
+    <li><strong>Termos de Serviço:</strong> <a href="https://www.whatsapp.com/legal/terms-of-service" target="_blank">whatsapp.com/legal/terms-of-service</a></li>
+    <li><strong>Política de Privacidade:</strong> <a href="https://www.whatsapp.com/legal/privacy-policy-eea" target="_blank">whatsapp.com/legal/privacy-policy-eea</a></li>
+  </ul>
+  <p>O Grupo Fani não é responsável por falhas, indisponibilidades ou alterações nas políticas da Meta Platforms.</p>
+
+  <h2>8. Limitação de Responsabilidade</h2>
+  <p>O Grupo Fani não se responsabiliza por:</p>
+  <ul>
+    <li>Falhas de entrega de mensagens por problemas de conectividade, desativação do número de telefone da revendedora ou restrições impostas pela Meta</li>
+    <li>Uso indevido das mensagens recebidas por terceiros que tenham acesso ao dispositivo da revendedora</li>
+    <li>Danos indiretos decorrentes do não recebimento de mensagens por opção de opt-out</li>
+  </ul>
+
+  <h2>9. Propriedade Intelectual</h2>
+  <p>O sistema de despacho de mensagens, incluindo sua arquitetura, código-fonte e lógica de operação, é de propriedade do Grupo Fani e/ou de seus fornecedores de tecnologia. Os templates de mensagem e a identidade visual utilizados nas comunicações são de propriedade do Grupo Boticário e utilizados mediante licença da franqueadora.</p>
+
+  <h2>10. Vigência e Alterações</h2>
+  <p>Estes Termos entram em vigor em 07 de junho de 2026 e permanecem válidos enquanto o sistema estiver em operação. Alterações substanciais serão comunicadas com antecedência mínima de 30 dias. O uso continuado do serviço após alterações implica a aceitação dos novos termos.</p>
+
+  <h2>11. Legislação Aplicável e Foro</h2>
+  <p>Estes Termos são regidos pela legislação brasileira, em especial a LGPD (Lei nº 13.709/2018) e o Código de Defesa do Consumidor (Lei nº 8.078/1990). Fica eleito o foro da comarca de São Bernardo do Campo/SP para dirimir quaisquer controvérsias.</p>
+
+  <h2>12. Contato</h2>
+  <ul>
+    <li><strong>Razão Social:</strong> ARPEL DISTRIBUIDORA DE COSMETICOS LTDA (Grupo Fani)</li>
+    <li><strong>E-mail:</strong> suporte@ai4allplatform.com</li>
+    <li><strong>DPO:</strong> <span class="todo">[NOME E E-MAIL DO DPO]</span></li>
+    <li><strong>Endereço:</strong> Rua Paissandu — Centro — São Bernardo do Campo/SP — CEP 09721-240</li>
+  </ul>
+
+</div>
+
+<footer>
+  <div class="footer-left">ARPEL DISTRIBUIDORA DE COSMETICOS LTDA · CNPJ 15.746.172/0001-86 · suporte@ai4allplatform.com</div>
+  <div class="footer-right">Tecnologia <span class="footer-brand">AI4ALL Platform</span> · © 2026</div>
+</footer>
+
+</body>
+</html>

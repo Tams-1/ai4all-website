@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI4ALL Platform — Inteligência Artificial para Todo Pequeno Negócio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --cyan: #00CFFF;
+  --purple: #7B2FFF;
+  --cyan-soft: rgba(0,207,255,0.12);
+  --purple-soft: rgba(123,47,255,0.12);
+  --bg: #000000;
+  --bg2: #080810;
+  --bg3: #0D0D1A;
+  --bg4: #111122;
+  --border: rgba(255,255,255,0.07);
+  --border-bright: rgba(255,255,255,0.14);
+  --text: #FFFFFF;
+  --text2: rgba(255,255,255,0.60);
+  --text3: rgba(255,255,255,0.30);
+  --grad: linear-gradient(90deg, #00CFFF, #7B2FFF);
+  --grad-diag: linear-gradient(135deg, #00CFFF, #7B2FFF);
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ─── NAV ─── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px 64px;
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.logo-text { font-family: 'Syne', sans-serif; font-size: 17px; font-weight: 800; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: -0.3px; }
+.nav-links { display: flex; gap: 36px; }
+.nav-links a { color: var(--text2); text-decoration: none; font-size: 14px; font-weight: 400; transition: color .2s; letter-spacing: 0.1px; }
+.nav-links a:hover { color: var(--text); }
+.nav-cta { display: flex; gap: 10px; align-items: center; }
+.btn-ghost { padding: 9px 22px; border: 1px solid var(--border-bright); border-radius: 8px; background: transparent; color: var(--text2); font-size: 13px; cursor: pointer; transition: all .2s; font-family: 'DM Sans', sans-serif; }
+.btn-ghost:hover { color: var(--text); border-color: rgba(255,255,255,0.3); }
+.btn-primary { padding: 9px 22px; border: none; border-radius: 8px; background: var(--grad); color: #fff; font-size: 13px; font-weight: 600; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: opacity .2s; }
+.btn-primary:hover { opacity: .85; }
+
+/* ─── HERO ─── */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; padding: 140px 40px 100px;
+  position: relative; overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 60% 50% at 30% 20%, rgba(0,207,255,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 70% 70%, rgba(123,47,255,0.08) 0%, transparent 60%);
+}
+.hero-grid {
+  position: absolute; inset: 0; pointer-events: none; opacity: 0.04;
+  background-image: linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 18px; border-radius: 100px;
+  border: 1px solid rgba(0,207,255,0.25);
+  background: rgba(0,207,255,0.06);
+  font-size: 12px; color: var(--cyan); margin-bottom: 36px;
+  font-weight: 500; letter-spacing: 0.5px; text-transform: uppercase;
+}
+.hero-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--cyan); animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(1.4)} }
+
+.hero h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(40px, 6.5vw, 80px);
+  font-weight: 800; line-height: 1.04;
+  letter-spacing: -3px;
+  max-width: 900px;
+  margin-bottom: 28px;
+}
+.grad-text { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.hero-sub { font-size: 18px; color: var(--text2); max-width: 540px; margin-bottom: 48px; line-height: 1.65; font-weight: 300; }
+.hero-btns { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; margin-bottom: 72px; }
+.btn-hero { padding: 15px 30px; border-radius: 10px; font-size: 15px; font-weight: 600; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all .25s; letter-spacing: 0.1px; }
+.btn-hero-primary { background: var(--grad); border: none; color: #fff; box-shadow: 0 0 40px rgba(0,207,255,0.15); }
+.btn-hero-primary:hover { opacity: .85; transform: translateY(-2px); box-shadow: 0 8px 40px rgba(0,207,255,0.25); }
+.btn-hero-secondary { background: transparent; border: 1px solid var(--border-bright); color: var(--text2); }
+.btn-hero-secondary:hover { border-color: rgba(255,255,255,0.3); color: var(--text); background: rgba(255,255,255,0.03); }
+
+/* Hero visual — bird network */
+.hero-visual { width: 100%; max-width: 600px; position: relative; }
+
+/* ─── STATS BAR ─── */
+.stats-bar {
+  padding: 28px 64px;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+  display: flex; align-items: center; justify-content: center;
+  gap: 0; flex-wrap: wrap;
+}
+.stat-item { display: flex; align-items: center; gap: 14px; padding: 0 40px; }
+.stat-item + .stat-item { border-left: 1px solid var(--border); }
+.stat-num { font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 800; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.stat-label { font-size: 13px; color: var(--text3); line-height: 1.4; }
+
+/* ─── SECTIONS ─── */
+.section { padding: 110px 64px; max-width: 1160px; margin: 0 auto; }
+.section-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--cyan); margin-bottom: 16px; }
+.section-title { font-family: 'Syne', sans-serif; font-size: clamp(28px, 3.5vw, 48px); font-weight: 800; line-height: 1.1; letter-spacing: -1.5px; margin-bottom: 18px; }
+.section-sub { font-size: 17px; color: var(--text2); max-width: 540px; margin-bottom: 64px; line-height: 1.7; font-weight: 300; }
+
+/* ─── MANIFESTO / VISION ─── */
+.manifesto {
+  background: var(--bg2);
+  padding: 110px 64px;
+  text-align: center;
+  position: relative; overflow: hidden;
+}
+.manifesto-bg {
+  position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(123,47,255,0.07) 0%, transparent 70%);
+}
+.manifesto-quote {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(22px, 3vw, 38px);
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -1px;
+  max-width: 820px;
+  margin: 0 auto 32px;
+  color: var(--text);
+}
+.manifesto-quote em { font-style: normal; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.manifesto-body { font-size: 17px; color: var(--text2); max-width: 580px; margin: 0 auto; line-height: 1.75; font-weight: 300; }
+
+/* ─── HOW IT WORKS ─── */
+.steps-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border-radius: 20px; overflow: hidden; }
+.step {
+  background: var(--bg3);
+  padding: 40px 36px;
+  position: relative;
+}
+.step-num {
+  font-family: 'Syne', sans-serif;
+  font-size: 64px; font-weight: 800;
+  background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  opacity: 0.2; position: absolute; top: 20px; right: 24px; line-height: 1;
+}
+.step-icon { width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; font-size: 22px; }
+.step h3 { font-family: 'Syne', sans-serif; font-size: 17px; font-weight: 700; margin-bottom: 10px; letter-spacing: -0.3px; }
+.step p { font-size: 14px; color: var(--text2); line-height: 1.65; }
+
+/* ─── PLATFORM PILLARS ─── */
+.pillars-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.pillar {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 18px; padding: 32px 28px;
+  transition: border-color .25s, transform .25s;
+  position: relative; overflow: hidden;
+}
+.pillar::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: var(--grad); opacity: 0; transition: opacity .25s;
+}
+.pillar:hover { border-color: rgba(0,207,255,0.2); transform: translateY(-3px); }
+.pillar:hover::before { opacity: 1; }
+.pillar-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; font-size: 20px; }
+.pillar h3 { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; margin-bottom: 10px; letter-spacing: -0.2px; }
+.pillar p { font-size: 13px; color: var(--text2); line-height: 1.65; }
+
+/* ─── VERTICALS ─── */
+.verticals-section { background: var(--bg2); padding: 110px 64px; }
+.verticals-inner { max-width: 1160px; margin: 0 auto; }
+.verticals-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 32px; }
+.vertical-card {
+  background: var(--bg4);
+  border: 1px solid var(--border);
+  border-radius: 16px; padding: 28px 24px;
+  text-align: center;
+  transition: border-color .25s, background .25s;
+  cursor: default;
+}
+.vertical-card:hover { border-color: rgba(0,207,255,0.25); background: rgba(0,207,255,0.03); }
+.vertical-card.active { border-color: rgba(0,207,255,0.4); background: rgba(0,207,255,0.05); }
+.vertical-emoji { font-size: 32px; margin-bottom: 14px; display: block; }
+.vertical-name { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+.vertical-desc { font-size: 12px; color: var(--text3); line-height: 1.5; }
+.vertical-badge { display: inline-block; margin-top: 10px; padding: 3px 10px; border-radius: 100px; font-size: 11px; font-weight: 600; border: 1px solid rgba(0,207,255,0.4); color: var(--cyan); background: rgba(0,207,255,0.07); }
+
+/* ─── CASE / PROOF ─── */
+.case-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+.case-phone {
+  background: var(--bg3); border: 1px solid var(--border); border-radius: 24px;
+  padding: 28px; font-size: 13px;
+  box-shadow: 0 0 80px rgba(0,207,255,0.05);
+}
+.case-tag { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 100px; background: rgba(0,207,255,0.08); border: 1px solid rgba(0,207,255,0.2); font-size: 11px; color: var(--cyan); font-weight: 600; letter-spacing: 0.5px; margin-bottom: 16px; text-transform: uppercase; }
+.case-phone-header { display: flex; align-items: center; gap: 12px; padding-bottom: 18px; border-bottom: 1px solid var(--border); margin-bottom: 18px; }
+.case-avatar { width: 38px; height: 38px; border-radius: 50%; background: var(--grad); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 15px; flex-shrink: 0; }
+.case-agent-name { font-weight: 600; font-size: 14px; }
+.case-agent-status { font-size: 11px; color: #22C55E; }
+.msg { margin-bottom: 10px; display: flex; }
+.msg.bot { justify-content: flex-start; }
+.msg.user { justify-content: flex-end; }
+.bubble { padding: 10px 14px; border-radius: 16px; max-width: 82%; line-height: 1.55; font-size: 13px; }
+.bubble.bot { background: rgba(255,255,255,0.07); border-radius: 4px 16px 16px 16px; }
+.bubble.user { background: rgba(0,207,255,0.1); border: 1px solid rgba(0,207,255,0.2); border-radius: 16px 4px 16px 16px; }
+.case-results { margin-top: 40px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.case-metric { background: var(--bg4); border: 1px solid var(--border); border-radius: 14px; padding: 20px 16px; text-align: center; }
+.case-metric-num { font-family: 'Syne', sans-serif; font-size: 26px; font-weight: 800; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.case-metric-label { font-size: 12px; color: var(--text3); margin-top: 4px; line-height: 1.4; }
+
+/* ─── TESTIMONIAL ─── */
+.testimonial-wrap { background: var(--bg2); padding: 110px 64px; }
+.testimonial-inner { max-width: 760px; margin: 0 auto; }
+.testimonial-card { background: var(--bg3); border: 1px solid var(--border); border-radius: 24px; padding: 56px; position: relative; overflow: hidden; }
+.testimonial-card::before { content: '"'; position: absolute; top: 16px; left: 36px; font-family: 'Syne', sans-serif; font-size: 100px; line-height: 1; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; opacity: 0.3; }
+.testimonial-text { font-size: 20px; line-height: 1.7; font-weight: 300; color: var(--text); margin-bottom: 36px; }
+.testimonial-author { display: flex; align-items: center; gap: 16px; }
+.author-avatar { width: 50px; height: 50px; border-radius: 50%; background: var(--grad); display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-weight: 800; font-size: 18px; flex-shrink: 0; }
+.author-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 16px; }
+.author-role { font-size: 13px; color: var(--text3); margin-top: 2px; }
+
+/* ─── VISION / ABOUT ─── */
+.vision-section { background: var(--bg); padding: 110px 64px; }
+.vision-inner { max-width: 1160px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+.vision-values { display: flex; flex-direction: column; gap: 24px; margin-top: 8px; }
+.value-item { display: flex; gap: 16px; align-items: flex-start; }
+.value-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--grad-diag); flex-shrink: 0; margin-top: 6px; }
+.value-text h4 { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+.value-text p { font-size: 13px; color: var(--text2); line-height: 1.6; }
+
+/* ─── CTA ─── */
+.cta-section {
+  text-align: center; padding: 130px 40px;
+  background: var(--bg2); position: relative; overflow: hidden;
+}
+.cta-bg {
+  position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(0,207,255,0.07) 0%, rgba(123,47,255,0.05) 40%, transparent 70%);
+}
+.cta-section h2 { font-family: 'Syne', sans-serif; font-size: clamp(28px, 4vw, 52px); font-weight: 800; letter-spacing: -2px; max-width: 640px; margin: 0 auto 20px; line-height: 1.08; }
+.cta-section p { font-size: 17px; color: var(--text2); margin-bottom: 44px; font-weight: 300; }
+.cta-form { display: flex; gap: 12px; max-width: 480px; margin: 0 auto; }
+.cta-input { flex: 1; padding: 15px 20px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-bright); border-radius: 10px; color: var(--text); font-size: 15px; font-family: 'DM Sans', sans-serif; outline: none; transition: border-color .2s; }
+.cta-input:focus { border-color: rgba(0,207,255,0.5); }
+.cta-input::placeholder { color: var(--text3); }
+.cta-btn { padding: 15px 26px; background: var(--grad); border: none; border-radius: 10px; color: #fff; font-size: 15px; font-weight: 600; cursor: pointer; font-family: 'DM Sans', sans-serif; white-space: nowrap; transition: opacity .2s; }
+.cta-btn:hover { opacity: .85; }
+.cta-note { font-size: 12px; color: var(--text3); margin-top: 16px; }
+
+/* ─── FOOTER ─── */
+footer { padding: 56px 64px 36px; border-top: 1px solid var(--border); display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 40px; }
+.footer-brand .logo-text { font-size: 16px; }
+.footer-tagline { font-size: 13px; color: var(--text3); max-width: 200px; margin-top: 10px; line-height: 1.6; }
+.footer-col h4 { font-size: 11px; font-weight: 600; color: var(--text3); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 18px; }
+.footer-col a { display: block; font-size: 14px; color: var(--text2); text-decoration: none; margin-bottom: 12px; transition: color .2s; }
+.footer-col a:hover { color: var(--text); }
+.footer-bottom { padding: 24px 64px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+.footer-bottom p { font-size: 12px; color: var(--text3); }
+
+/* ─── MOBILE ─── */
+@media (max-width: 768px) {
+  nav { padding: 16px 24px; }
+  .nav-links { display: none; }
+  .section, .manifesto, .verticals-section, .testimonial-wrap, .vision-section, .cta-section { padding: 72px 24px; }
+  .steps-row { grid-template-columns: 1fr; gap: 1px; }
+  .pillars-grid { grid-template-columns: 1fr 1fr; }
+  .verticals-grid { grid-template-columns: 1fr 1fr; }
+  .case-wrap { grid-template-columns: 1fr; }
+  .case-results { grid-template-columns: repeat(3, 1fr); }
+  .vision-inner { grid-template-columns: 1fr; gap: 40px; }
+  .cta-form { flex-direction: column; }
+  footer { padding: 40px 24px; }
+  .footer-bottom { padding: 20px 24px; flex-direction: column; gap: 8px; text-align: center; }
+  .stat-item { padding: 0 20px; }
+  .hero h1 { letter-spacing: -2px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="logo" href="#">
+    <svg width="28" height="28" viewBox="0 0 80 80" fill="none">
+      <defs><linearGradient id="ng" x1="0" y1="0" x2="80" y2="80" gradientUnits="userSpaceOnUse"><stop stop-color="#00CFFF"/><stop offset="1" stop-color="#7B2FFF"/></linearGradient></defs>
+      <rect x="18" y="18" width="44" height="44" rx="12" stroke="url(#ng)" stroke-width="4" fill="none"/>
+      <circle cx="29" cy="29" r="4" fill="url(#ng)"/>
+      <circle cx="51" cy="29" r="4" fill="url(#ng)"/>
+      <circle cx="29" cy="51" r="4" fill="url(#ng)"/>
+      <circle cx="51" cy="51" r="4" fill="url(#ng)"/>
+      <line x1="8" y1="8" x2="24" y2="24" stroke="url(#ng)" stroke-width="3" stroke-linecap="round"/>
+      <line x1="72" y1="8" x2="56" y2="24" stroke="url(#ng)" stroke-width="3" stroke-linecap="round"/>
+      <line x1="8" y1="72" x2="24" y2="56" stroke="url(#ng)" stroke-width="3" stroke-linecap="round"/>
+      <line x1="72" y1="72" x2="56" y2="56" stroke="url(#ng)" stroke-width="3" stroke-linecap="round"/>
+    </svg>
+    <span class="logo-text">AI4ALL Platform</span>
+  </a>
+  <div class="nav-links">
+    <a href="#">Plataforma</a>
+    <a href="#">Setores</a>
+    <a href="#">Cases</a>
+    <a href="#">Sobre</a>
+  </div>
+  <div class="nav-cta">
+    <button class="btn-ghost">Entrar</button>
+    <button class="btn-primary">Falar com a gente</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-badge"><span class="hero-badge-dot"></span> Plataforma de IA para pequenos negócios</div>
+  <h1>IA que trabalha<br>para <span class="grad-text">todo negócio</span></h1>
+  <p class="hero-sub">Não importa o setor, o tamanho ou o desafio — a AI4ALL Platform traz a tecnologia certa, aplicada do jeito certo, ao alcance de qualquer empresa.</p>
+  <div class="hero-btns">
+    <button class="btn-hero btn-hero-primary">Falar com a gente</button>
+    <button class="btn-hero btn-hero-secondary">Ver como funciona →</button>
+  </div>
+
+  <!-- Bird network SVG — same vibe, bigger/richer -->
+  <div class="hero-visual">
+    <svg viewBox="0 0 1000 1000" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
+  <defs>
+    <linearGradient id="grad" x1="60" y1="0" x2="940" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#00CFFF"/>
+      <stop offset="0.5" stop-color="#4A6BFF"/>
+      <stop offset="1" stop-color="#7B2FFF"/>
+    </linearGradient>
+    <linearGradient id="gradL" x1="392.0" y1="406.7" x2="632.0" y2="646.7" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#00CFFF"/>
+      <stop offset="1" stop-color="#7B2FFF"/>
+    </linearGradient>
+    <filter id="glow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="4.5" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glowBox" x="-160%" y="-160%" width="420%" height="420%">
+      <feGaussianBlur stdDeviation="16" result="b1"/>
+      <feGaussianBlur stdDeviation="16" result="b2"/>
+      <feMerge>
+        <feMergeNode in="b1"/><feMergeNode in="b2"/><feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- network lines (detected, symmetric) -->
+  <line x1="378.8" y1="468.6" x2="393.9" y2="430.0" stroke="url(#grad)" stroke-width="3.0" opacity="0.30" filter="url(#glow)"/>
+  <line x1="645.1" y1="468.7" x2="630.0" y2="430.0" stroke="url(#grad)" stroke-width="3.0" opacity="0.30" filter="url(#glow)"/>
+  <line x1="378.8" y1="468.6" x2="290.3" y2="445.6" stroke="url(#grad)" stroke-width="3.0" opacity="0.22" filter="url(#glow)"/>
+  <line x1="645.1" y1="468.7" x2="733.6" y2="445.6" stroke="url(#grad)" stroke-width="3.0" opacity="0.22" filter="url(#glow)"/>
+  <line x1="378.8" y1="468.6" x2="268.7" y2="360.9" stroke="url(#grad)" stroke-width="3.0" opacity="0.22" filter="url(#glow)"/>
+  <line x1="645.1" y1="468.7" x2="755.2" y2="360.9" stroke="url(#grad)" stroke-width="3.0" opacity="0.22" filter="url(#glow)"/>
+  <line x1="378.8" y1="468.6" x2="340.5" y2="428.9" stroke="url(#grad)" stroke-width="3.0" opacity="0.24" filter="url(#glow)"/>
+  <line x1="645.1" y1="468.7" x2="683.4" y2="428.9" stroke="url(#grad)" stroke-width="3.0" opacity="0.24" filter="url(#glow)"/>
+  <line x1="378.8" y1="468.6" x2="326.2" y2="455.6" stroke="url(#grad)" stroke-width="3.0" opacity="0.24" filter="url(#glow)"/>
+  <line x1="645.1" y1="468.7" x2="697.7" y2="455.6" stroke="url(#grad)" stroke-width="3.0" opacity="0.24" filter="url(#glow)"/>
+  <line x1="393.9" y1="430.0" x2="431.4" y2="391.5" stroke="url(#grad)" stroke-width="3.0" opacity="0.22" filter="url(#glow)"/>
+  <line x1="630.0" y1="430.0" x2="592.5" y2="391.5" stroke="url(#grad)" stroke-width="3.0" opacity="0.22" filter="url(#glow)"/>
+  <line x1="393.9" y1="430.0" x2="327.8" y2="339.4" stroke="url(#grad)" stroke-width="3.0" opacity="0.22" filter="url(#glow)"/>
+  <line x1="630.0" y1="430.0" x2="696.1" y2="339.4" stroke="url(#grad)" stroke-width="3.0" opacity="0.22" filter="url(#glow)"/>
+  <line x1="393.9" y1="430.0" x2="361.2" y2="385.8" stroke="url(#grad)" stroke-width="3.0" opacity="0.24" filter="url(#glow)"/>
+  <line x1="630.0" y1="430.0" x2="662.7" y2="385.8" stroke="url(#grad)" stroke-width="3.0" opacity="0.24" filter="url(#glow)"/>
+  <line x1="431.4" y1="391.5" x2="327.8" y2="339.4" stroke="url(#grad)" stroke-width="3.0" opacity="0.21" filter="url(#glow)"/>
+  <line x1="592.5" y1="391.5" x2="696.1" y2="339.4" stroke="url(#grad)" stroke-width="3.0" opacity="0.21" filter="url(#glow)"/>
+  <line x1="431.4" y1="391.5" x2="397.9" y2="313.9" stroke="url(#grad)" stroke-width="3.0" opacity="0.21" filter="url(#glow)"/>
+  <line x1="592.5" y1="391.5" x2="626.0" y2="313.9" stroke="url(#grad)" stroke-width="3.0" opacity="0.21" filter="url(#glow)"/>
+  <line x1="431.4" y1="391.5" x2="498.4" y2="383.6" stroke="url(#grad)" stroke-width="3.0" opacity="0.24" filter="url(#glow)"/>
+  <line x1="592.5" y1="391.5" x2="525.5" y2="383.6" stroke="url(#grad)" stroke-width="3.0" opacity="0.24" filter="url(#glow)"/>
+  <line x1="431.4" y1="391.5" x2="466.5" y2="391.5" stroke="url(#grad)" stroke-width="3.0" opacity="0.28" filter="url(#glow)"/>
+  <line x1="592.5" y1="391.5" x2="557.4" y2="391.5" stroke="url(#grad)" stroke-width="3.0" opacity="0.28" filter="url(#glow)"/>
+  <line x1="431.4" y1="391.5" x2="449.8" y2="432.8" stroke="url(#grad)" stroke-width="3.0" opacity="0.24" filter="url(#glow)"/>
+  <line x1="592.5" y1="391.5" x2="574.1" y2="432.8" stroke="url(#grad)" stroke-width="3.0" opacity="0.24" filter="url(#glow)"/>
+  <line x1="431.4" y1="391.5" x2="382.0" y2="366.8" stroke="url(#grad)" stroke-width="3.0" opacity="0.23" filter="url(#glow)"/>
+  <line x1="592.5" y1="391.5" x2="641.9" y2="366.8" stroke="url(#grad)" stroke-width="3.0" opacity="0.23" filter="url(#glow)"/>
+  <line x1="333.3" y1="505.6" x2="349.3" y2="561.2" stroke="url(#grad)" stroke-width="3.0" opacity="0.22" filter="url(#glow)"/>
+  <line x1="690.6" y1="505.6" x2="674.6" y2="561.2" stroke="url(#grad)" stroke-width="3.0" opacity="0.22" filter="url(#glow)"/>
+  <line x1="333.3" y1="505.6" x2="249.6" y2="469.4" stroke="url(#grad)" stroke-width="3.0" opacity="0.21" filter="url(#glow)"/>
+  <line x1="690.6" y1="505.6" x2="774.3" y2="469.4" stroke="url(#grad)" stroke-width="3.0" opacity="0.21" filter="url(#glow)"/>
+  <line x1="333.3" y1="505.6" x2="250.4" y2="526.9" stroke="url(#grad)" stroke-width="3.0" opacity="0.22" filter="url(#glow)"/>
+  <line x1="690.6" y1="505.6" x2="773.5" y2="526.9" stroke="url(#grad)" stroke-width="3.0" opacity="0.22" filter="url(#glow)"/>
+  <line x1="333.3" y1="505.6" x2="381.2" y2="514.2" stroke="url(#grad)" stroke-width="3.0" opacity="0.24" filter="url(#glow)"/>
+  <line x1="690.6" y1="505.6" x2="642.7" y2="514.2" stroke="url(#grad)" stroke-width="3.0" opacity="0.24" filter="url(#glow)"/>
+  <line x1="333.3" y1="505.6" x2="294.3" y2="515.3" stroke="url(#grad)" stroke-width="3.0" opacity="0.26" filter="url(#glow)"/>
+  <line x1="690.6" y1="505.6" x2="729.6" y2="515.3" stroke="url(#grad)" stroke-width="3.0" opacity="0.26" filter="url(#glow)"/>
+  <line x1="290.3" y1="445.6" x2="249.6" y2="469.4" stroke="url(#grad)" stroke-width="3.0" opacity="0.26" filter="url(#glow)"/>
+  <line x1="733.6" y1="445.6" x2="774.3" y2="469.4" stroke="url(#grad)" stroke-width="3.0" opacity="0.26" filter="url(#glow)"/>
+  <line x1="290.3" y1="445.6" x2="189.8" y2="379.3" stroke="url(#grad)" stroke-width="3.0" opacity="0.20" filter="url(#glow)"/>
+  <line x1="733.6" y1="445.6" x2="834.1" y2="379.3" stroke="url(#grad)" stroke-width="3.0" opacity="0.20" filter="url(#glow)"/>
+  <line x1="290.3" y1="445.6" x2="326.2" y2="455.6" stroke="url(#grad)" stroke-width="3.0" opacity="0.26" filter="url(#glow)"/>
+  <line x1="733.6" y1="445.6" x2="697.7" y2="455.6" stroke="url(#grad)" stroke-width="3.0" opacity="0.26" filter="url(#glow)"/>
+  <line x1="290.3" y1="445.6" x2="247.2" y2="417.4" stroke="url(#grad)" stroke-width="3.0" opacity="0.23" filter="url(#glow)"/>
+  <line x1="733.6" y1="445.6" x2="776.7" y2="417.4" stroke="url(#grad)" stroke-width="3.0" opacity="0.23" filter="url(#glow)"/>
+  <line x1="349.3" y1="561.2" x2="382.0" y2="554.2" stroke="url(#grad)" stroke-width="3.0" opacity="0.26" filter="url(#glow)"/>
+  <line x1="674.6" y1="561.2" x2="641.9" y2="554.2" stroke="url(#grad)" stroke-width="3.0" opacity="0.26" filter="url(#glow)"/>
+  <line x1="327.8" y1="339.4" x2="339.7" y2="270.1" stroke="url(#grad)" stroke-width="3.0" opacity="0.20" filter="url(#glow)"/>
+  <line x1="696.1" y1="339.4" x2="684.2" y2="270.1" stroke="url(#grad)" stroke-width="3.0" opacity="0.20" filter="url(#glow)"/>
+  <line x1="327.8" y1="339.4" x2="240.0" y2="267.7" stroke="url(#grad)" stroke-width="3.0" opacity="0.20" filter="url(#glow)"/>
+  <line x1="696.1" y1="339.4" x2="783.9" y2="267.7" stroke="url(#grad)" stroke-width="3.0" opacity="0.20" filter="url(#glow)"/>
+  <line x1="327.8" y1="339.4" x2="361.2" y2="385.8" stroke="url(#grad)" stroke-width="3.0" opacity="0.23" filter="url(#glow)"/>
+  <line x1="696.1" y1="339.4" x2="662.7" y2="385.8" stroke="url(#grad)" stroke-width="3.0" opacity="0.23" filter="url(#glow)"/>
+  <line x1="327.8" y1="339.4" x2="382.0" y2="366.8" stroke="url(#grad)" stroke-width="3.0" opacity="0.22" filter="url(#glow)"/>
+  <line x1="696.1" y1="339.4" x2="641.9" y2="366.8" stroke="url(#grad)" stroke-width="3.0" opacity="0.22" filter="url(#glow)"/>
+  <line x1="268.7" y1="360.9" x2="189.8" y2="379.3" stroke="url(#grad)" stroke-width="3.0" opacity="0.21" filter="url(#glow)"/>
+  <line x1="755.2" y1="360.9" x2="834.1" y2="379.3" stroke="url(#grad)" stroke-width="3.0" opacity="0.21" filter="url(#glow)"/>
+  <line x1="268.7" y1="360.9" x2="188.2" y2="306.6" stroke="url(#grad)" stroke-width="3.0" opacity="0.20" filter="url(#glow)"/>
+  <line x1="755.2" y1="360.9" x2="835.7" y2="306.6" stroke="url(#grad)" stroke-width="3.0" opacity="0.20" filter="url(#glow)"/>
+  <line x1="268.7" y1="360.9" x2="240.0" y2="267.7" stroke="url(#grad)" stroke-width="3.0" opacity="0.20" filter="url(#glow)"/>
+  <line x1="755.2" y1="360.9" x2="783.9" y2="267.7" stroke="url(#grad)" stroke-width="3.0" opacity="0.20" filter="url(#glow)"/>
+  <line x1="268.7" y1="360.9" x2="340.5" y2="428.9" stroke="url(#grad)" stroke-width="3.0" opacity="0.22" filter="url(#glow)"/>
+  <line x1="755.2" y1="360.9" x2="683.4" y2="428.9" stroke="url(#grad)" stroke-width="3.0" opacity="0.22" filter="url(#glow)"/>
+  <line x1="249.6" y1="469.4" x2="170.7" y2="459.1" stroke="url(#grad)" stroke-width="3.0" opacity="0.21" filter="url(#glow)"/>
+  <line x1="774.3" y1="469.4" x2="853.2" y2="459.1" stroke="url(#grad)" stroke-width="3.0" opacity="0.21" filter="url(#glow)"/>
+  <line x1="249.6" y1="469.4" x2="118.0" y2="454.9" stroke="url(#grad)" stroke-width="3.0" opacity="0.24" filter="url(#glow)"/>
+  <line x1="774.3" y1="469.4" x2="905.9" y2="454.9" stroke="url(#grad)" stroke-width="3.0" opacity="0.24" filter="url(#glow)"/>
+  <line x1="249.6" y1="469.4" x2="381.2" y2="514.2" stroke="url(#grad)" stroke-width="3.0" opacity="0.20" filter="url(#glow)"/>
+  <line x1="774.3" y1="469.4" x2="642.7" y2="514.2" stroke="url(#grad)" stroke-width="3.0" opacity="0.20" filter="url(#glow)"/>
+  <line x1="250.4" y1="526.9" x2="170.7" y2="459.1" stroke="url(#grad)" stroke-width="3.0" opacity="0.20" filter="url(#glow)"/>
+  <line x1="773.5" y1="526.9" x2="853.2" y2="459.1" stroke="url(#grad)" stroke-width="3.0" opacity="0.20" filter="url(#glow)"/>
+  <line x1="250.4" y1="526.9" x2="163.5" y2="527.1" stroke="url(#grad)" stroke-width="3.0" opacity="0.20" filter="url(#glow)"/>
+  <line x1="773.5" y1="526.9" x2="860.4" y2="527.1" stroke="url(#grad)" stroke-width="3.0" opacity="0.20" filter="url(#glow)"/>
+  <line x1="250.4" y1="526.9" x2="294.3" y2="515.3" stroke="url(#grad)" stroke-width="3.0" opacity="0.23" filter="url(#glow)"/>
+  <line x1="773.5" y1="526.9" x2="729.6" y2="515.3" stroke="url(#grad)" stroke-width="3.0" opacity="0.23" filter="url(#glow)"/>
+  <line x1="189.8" y1="379.3" x2="122.8" y2="299.0" stroke="url(#grad)" stroke-width="3.0" opacity="0.20" filter="url(#glow)"/>
+  <line x1="834.1" y1="379.3" x2="901.1" y2="299.0" stroke="url(#grad)" stroke-width="3.0" opacity="0.20" filter="url(#glow)"/>
+  <line x1="189.8" y1="379.3" x2="70.2" y2="313.2" stroke="url(#grad)" stroke-width="3.0" opacity="0.18" filter="url(#glow)"/>
+  <line x1="834.1" y1="379.3" x2="953.7" y2="313.2" stroke="url(#grad)" stroke-width="3.0" opacity="0.18" filter="url(#glow)"/>
+  <line x1="189.8" y1="379.3" x2="247.2" y2="417.4" stroke="url(#grad)" stroke-width="3.0" opacity="0.21" filter="url(#glow)"/>
+  <line x1="834.1" y1="379.3" x2="776.7" y2="417.4" stroke="url(#grad)" stroke-width="3.0" opacity="0.21" filter="url(#glow)"/>
+  <line x1="510.4" y1="354.9" x2="498.4" y2="383.6" stroke="url(#grad)" stroke-width="3.0" opacity="0.26" filter="url(#glow)"/>
+  <line x1="513.5" y1="354.9" x2="525.5" y2="383.6" stroke="url(#grad)" stroke-width="3.0" opacity="0.26" filter="url(#glow)"/>
+  <line x1="170.7" y1="459.1" x2="118.0" y2="454.9" stroke="url(#grad)" stroke-width="3.0" opacity="0.22" filter="url(#glow)"/>
+  <line x1="853.2" y1="459.1" x2="905.9" y2="454.9" stroke="url(#grad)" stroke-width="3.0" opacity="0.22" filter="url(#glow)"/>
+  <line x1="170.7" y1="459.1" x2="102.1" y2="395.4" stroke="url(#grad)" stroke-width="3.0" opacity="0.20" filter="url(#glow)"/>
+  <line x1="853.2" y1="459.1" x2="921.8" y2="395.4" stroke="url(#grad)" stroke-width="3.0" opacity="0.20" filter="url(#glow)"/>
+  <line x1="397.9" y1="313.9" x2="339.7" y2="270.1" stroke="url(#grad)" stroke-width="3.0" opacity="0.20" filter="url(#glow)"/>
+  <line x1="626.0" y1="313.9" x2="684.2" y2="270.1" stroke="url(#grad)" stroke-width="3.0" opacity="0.20" filter="url(#glow)"/>
+  <line x1="397.9" y1="313.9" x2="279.1" y2="228.6" stroke="url(#grad)" stroke-width="3.0" opacity="0.21" filter="url(#glow)"/>
+  <line x1="626.0" y1="313.9" x2="744.8" y2="228.6" stroke="url(#grad)" stroke-width="3.0" opacity="0.21" filter="url(#glow)"/>
+  <line x1="397.9" y1="313.9" x2="449.8" y2="432.8" stroke="url(#grad)" stroke-width="3.0" opacity="0.27" filter="url(#glow)"/>
+  <line x1="626.0" y1="313.9" x2="574.1" y2="432.8" stroke="url(#grad)" stroke-width="3.0" opacity="0.27" filter="url(#glow)"/>
+  <line x1="188.2" y1="306.6" x2="122.8" y2="299.0" stroke="url(#grad)" stroke-width="3.0" opacity="0.21" filter="url(#glow)"/>
+  <line x1="835.7" y1="306.6" x2="901.1" y2="299.0" stroke="url(#grad)" stroke-width="3.0" opacity="0.21" filter="url(#glow)"/>
+  <line x1="163.5" y1="527.1" x2="294.3" y2="515.3" stroke="url(#grad)" stroke-width="3.0" opacity="0.20" filter="url(#glow)"/>
+  <line x1="860.4" y1="527.1" x2="729.6" y2="515.3" stroke="url(#grad)" stroke-width="3.0" opacity="0.20" filter="url(#glow)"/>
+  <line x1="339.7" y1="270.1" x2="279.1" y2="228.6" stroke="url(#grad)" stroke-width="3.0" opacity="0.18" filter="url(#glow)"/>
+  <line x1="684.2" y1="270.1" x2="744.8" y2="228.6" stroke="url(#grad)" stroke-width="3.0" opacity="0.18" filter="url(#glow)"/>
+  <line x1="240.0" y1="267.7" x2="130.0" y2="233.4" stroke="url(#grad)" stroke-width="3.0" opacity="0.18" filter="url(#glow)"/>
+  <line x1="783.9" y1="267.7" x2="893.9" y2="233.4" stroke="url(#grad)" stroke-width="3.0" opacity="0.18" filter="url(#glow)"/>
+  <line x1="240.0" y1="267.7" x2="194.6" y2="197.9" stroke="url(#grad)" stroke-width="3.0" opacity="0.19" filter="url(#glow)"/>
+  <line x1="783.9" y1="267.7" x2="829.3" y2="197.9" stroke="url(#grad)" stroke-width="3.0" opacity="0.19" filter="url(#glow)"/>
+  <line x1="498.4" y1="383.6" x2="466.5" y2="391.5" stroke="url(#grad)" stroke-width="3.0" opacity="0.23" filter="url(#glow)"/>
+  <line x1="525.5" y1="383.6" x2="557.4" y2="391.5" stroke="url(#grad)" stroke-width="3.0" opacity="0.23" filter="url(#glow)"/>
+  <line x1="122.8" y1="299.0" x2="130.0" y2="233.4" stroke="url(#grad)" stroke-width="3.0" opacity="0.19" filter="url(#glow)"/>
+  <line x1="901.1" y1="299.0" x2="893.9" y2="233.4" stroke="url(#grad)" stroke-width="3.0" opacity="0.19" filter="url(#glow)"/>
+  <line x1="122.8" y1="299.0" x2="59.0" y2="238.9" stroke="url(#grad)" stroke-width="3.0" opacity="0.19" filter="url(#glow)"/>
+  <line x1="901.1" y1="299.0" x2="964.9" y2="238.9" stroke="url(#grad)" stroke-width="3.0" opacity="0.19" filter="url(#glow)"/>
+  <line x1="130.0" y1="233.4" x2="88.5" y2="148.7" stroke="url(#grad)" stroke-width="3.0" opacity="0.18" filter="url(#glow)"/>
+  <line x1="893.9" y1="233.4" x2="935.4" y2="148.7" stroke="url(#grad)" stroke-width="3.0" opacity="0.18" filter="url(#glow)"/>
+  <line x1="194.6" y1="197.9" x2="224.1" y2="155.6" stroke="url(#grad)" stroke-width="3.0" opacity="0.20" filter="url(#glow)"/>
+  <line x1="829.3" y1="197.9" x2="799.8" y2="155.6" stroke="url(#grad)" stroke-width="3.0" opacity="0.20" filter="url(#glow)"/>
+  <line x1="381.2" y1="514.2" x2="294.3" y2="515.3" stroke="url(#grad)" stroke-width="3.0" opacity="0.23" filter="url(#glow)"/>
+  <line x1="642.7" y1="514.2" x2="729.6" y2="515.3" stroke="url(#grad)" stroke-width="3.0" opacity="0.23" filter="url(#glow)"/>
+  <line x1="326.2" y1="455.6" x2="247.2" y2="417.4" stroke="url(#grad)" stroke-width="3.0" opacity="0.23" filter="url(#glow)"/>
+  <line x1="697.7" y1="455.6" x2="776.7" y2="417.4" stroke="url(#grad)" stroke-width="3.0" opacity="0.23" filter="url(#glow)"/>
+  <line x1="615.0" y1="440.0" x2="630.0" y2="430.0" stroke="url(#grad)" stroke-width="3.0" opacity="0.22" filter="url(#glow)"/>
+  <line x1="655.0" y1="408.0" x2="662.7" y2="385.8" stroke="url(#grad)" stroke-width="3.0" opacity="0.22" filter="url(#glow)"/>
+  <line x1="695.0" y1="436.0" x2="683.4" y2="428.9" stroke="url(#grad)" stroke-width="3.0" opacity="0.22" filter="url(#glow)"/>
+  <line x1="732.0" y1="404.0" x2="733.6" y2="445.6" stroke="url(#grad)" stroke-width="3.0" opacity="0.22" filter="url(#glow)"/>
+  <line x1="665.0" y1="466.0" x2="645.1" y2="468.7" stroke="url(#grad)" stroke-width="3.0" opacity="0.22" filter="url(#glow)"/>
+  <line x1="512.0" y1="606.7" x2="512.0" y2="616.0" stroke="url(#grad)" stroke-width="3.0" opacity="0.24" filter="url(#glow)"/>
+  <line x1="512.0" y1="616.0" x2="512.0" y2="648.0" stroke="url(#grad)" stroke-width="3.0" opacity="0.24" filter="url(#glow)"/>
+  <line x1="512.0" y1="648.0" x2="500.0" y2="674.0" stroke="url(#grad)" stroke-width="3.0" opacity="0.24" filter="url(#glow)"/>
+  <line x1="512.0" y1="648.0" x2="524.0" y2="674.0" stroke="url(#grad)" stroke-width="3.0" opacity="0.24" filter="url(#glow)"/>
+  <!-- tail branch -->
+  <circle cx="512.0" cy="616.0" r="6.0" fill="url(#grad)" opacity="0.55" filter="url(#glow)"/>
+  <circle cx="512.0" cy="648.0" r="6.0" fill="url(#grad)" opacity="0.50" filter="url(#glow)"/>
+  <circle cx="500.0" cy="674.0" r="5.0" fill="url(#grad)" opacity="0.40" filter="url(#glow)"/>
+  <circle cx="524.0" cy="674.0" r="5.0" fill="url(#grad)" opacity="0.40" filter="url(#glow)"/>
+  <!-- dove head -->
+  <line x1="545.0" y1="380.0" x2="555.0" y2="290.0" stroke="url(#grad)" stroke-width="2.7" opacity="0.50" filter="url(#glow)"/>
+  <line x1="555.0" y1="290.0" x2="568.0" y2="308.0" stroke="url(#grad)" stroke-width="2.7" opacity="0.50" filter="url(#glow)"/>
+  <circle cx="550.0" cy="335.0" r="5.0" fill="url(#grad)" opacity="0.72" filter="url(#glow)"/>
+  <circle cx="555.0" cy="290.0" r="7.0" fill="url(#grad)" opacity="0.82" filter="url(#glow)"/>
+  <circle cx="568.0" cy="308.0" r="5.0" fill="url(#grad)" opacity="0.76" filter="url(#glow)"/>
+  <!-- network nodes (detected, symmetric) -->
+  <circle cx="378.8" cy="468.6" r="11.3" fill="url(#grad)" opacity="0.91" filter="url(#glow)"/>
+  <circle cx="393.9" cy="430.0" r="11.2" fill="url(#grad)" opacity="0.90" filter="url(#glow)"/>
+  <circle cx="431.4" cy="391.5" r="11.0" fill="url(#grad)" opacity="0.87" filter="url(#glow)"/>
+  <circle cx="333.3" cy="505.6" r="10.5" fill="url(#grad)" opacity="0.82" filter="url(#glow)"/>
+  <circle cx="290.3" cy="445.6" r="10.2" fill="url(#grad)" opacity="0.78" filter="url(#glow)"/>
+  <circle cx="349.3" cy="561.2" r="10.1" fill="url(#grad)" opacity="0.77" filter="url(#glow)"/>
+  <circle cx="327.8" cy="339.4" r="9.8" fill="url(#grad)" opacity="0.74" filter="url(#glow)"/>
+  <circle cx="268.7" cy="360.9" r="9.8" fill="url(#grad)" opacity="0.74" filter="url(#glow)"/>
+  <circle cx="249.6" cy="469.4" r="9.7" fill="url(#grad)" opacity="0.73" filter="url(#glow)"/>
+  <circle cx="250.4" cy="526.9" r="9.4" fill="url(#grad)" opacity="0.69" filter="url(#glow)"/>
+  <circle cx="189.8" cy="379.3" r="9.3" fill="url(#grad)" opacity="0.68" filter="url(#glow)"/>
+  <circle cx="170.7" cy="459.1" r="9.1" fill="url(#grad)" opacity="0.66" filter="url(#glow)"/>
+  <circle cx="397.9" cy="313.9" r="9.1" fill="url(#grad)" opacity="0.66" filter="url(#glow)"/>
+  <circle cx="188.2" cy="306.6" r="9.0" fill="url(#grad)" opacity="0.65" filter="url(#glow)"/>
+  <circle cx="163.5" cy="527.1" r="8.9" fill="url(#grad)" opacity="0.64" filter="url(#glow)"/>
+  <circle cx="118.0" cy="454.9" r="8.9" fill="url(#grad)" opacity="0.64" filter="url(#glow)"/>
+  <circle cx="339.7" cy="270.1" r="8.8" fill="url(#grad)" opacity="0.63" filter="url(#glow)"/>
+  <circle cx="102.1" cy="395.4" r="8.8" fill="url(#grad)" opacity="0.63" filter="url(#glow)"/>
+  <circle cx="240.0" cy="267.7" r="8.8" fill="url(#grad)" opacity="0.63" filter="url(#glow)"/>
+  <circle cx="498.4" cy="383.6" r="8.7" fill="url(#grad)" opacity="0.62" filter="url(#glow)"/>
+  <circle cx="122.8" cy="299.0" r="8.6" fill="url(#grad)" opacity="0.61" filter="url(#glow)"/>
+  <circle cx="70.2" cy="313.2" r="8.6" fill="url(#grad)" opacity="0.60" filter="url(#glow)"/>
+  <circle cx="279.1" cy="228.6" r="8.5" fill="url(#grad)" opacity="0.59" filter="url(#glow)"/>
+  <circle cx="130.0" cy="233.4" r="8.2" fill="url(#grad)" opacity="0.56" filter="url(#glow)"/>
+  <circle cx="194.6" cy="197.9" r="8.1" fill="url(#grad)" opacity="0.55" filter="url(#glow)"/>
+  <circle cx="59.0" cy="238.9" r="8.1" fill="url(#grad)" opacity="0.55" filter="url(#glow)"/>
+  <circle cx="88.5" cy="148.7" r="7.9" fill="url(#grad)" opacity="0.53" filter="url(#glow)"/>
+  <circle cx="466.5" cy="391.5" r="7.8" fill="url(#grad)" opacity="0.52" filter="url(#glow)"/>
+  <circle cx="224.1" cy="155.6" r="7.8" fill="url(#grad)" opacity="0.52" filter="url(#glow)"/>
+  <circle cx="145.9" cy="106.3" r="7.7" fill="url(#grad)" opacity="0.50" filter="url(#glow)"/>
+  <circle cx="449.8" cy="432.8" r="7.4" fill="url(#grad)" opacity="0.47" filter="url(#glow)"/>
+  <circle cx="381.2" cy="514.2" r="6.9" fill="url(#grad)" opacity="0.42" filter="url(#glow)"/>
+  <circle cx="340.5" cy="428.9" r="6.8" fill="url(#grad)" opacity="0.41" filter="url(#glow)"/>
+  <circle cx="382.0" cy="554.2" r="6.8" fill="url(#grad)" opacity="0.41" filter="url(#glow)"/>
+  <circle cx="361.2" cy="385.8" r="6.8" fill="url(#grad)" opacity="0.40" filter="url(#glow)"/>
+  <circle cx="326.2" cy="455.6" r="6.8" fill="url(#grad)" opacity="0.40" filter="url(#glow)"/>
+  <circle cx="294.3" cy="515.3" r="6.7" fill="url(#grad)" opacity="0.39" filter="url(#glow)"/>
+  <circle cx="382.0" cy="366.8" r="6.6" fill="url(#grad)" opacity="0.38" filter="url(#glow)"/>
+  <circle cx="247.2" cy="417.4" r="6.5" fill="url(#grad)" opacity="0.37" filter="url(#glow)"/>
+  <circle cx="510.4" cy="354.9" r="9.1" fill="url(#grad)" opacity="0.66" filter="url(#glow)"/>
+  <circle cx="645.1" cy="468.7" r="11.3" fill="url(#grad)" opacity="0.91" filter="url(#glow)"/>
+  <circle cx="630.0" cy="430.0" r="11.2" fill="url(#grad)" opacity="0.90" filter="url(#glow)"/>
+  <circle cx="592.5" cy="391.5" r="11.0" fill="url(#grad)" opacity="0.87" filter="url(#glow)"/>
+  <circle cx="690.6" cy="505.6" r="10.5" fill="url(#grad)" opacity="0.82" filter="url(#glow)"/>
+  <circle cx="733.6" cy="445.6" r="10.2" fill="url(#grad)" opacity="0.78" filter="url(#glow)"/>
+  <circle cx="674.6" cy="561.2" r="10.1" fill="url(#grad)" opacity="0.77" filter="url(#glow)"/>
+  <circle cx="696.1" cy="339.4" r="9.8" fill="url(#grad)" opacity="0.74" filter="url(#glow)"/>
+  <circle cx="755.2" cy="360.9" r="9.8" fill="url(#grad)" opacity="0.74" filter="url(#glow)"/>
+  <circle cx="774.3" cy="469.4" r="9.7" fill="url(#grad)" opacity="0.73" filter="url(#glow)"/>
+  <circle cx="773.5" cy="526.9" r="9.4" fill="url(#grad)" opacity="0.69" filter="url(#glow)"/>
+  <circle cx="834.1" cy="379.3" r="9.3" fill="url(#grad)" opacity="0.68" filter="url(#glow)"/>
+  <circle cx="853.2" cy="459.1" r="9.1" fill="url(#grad)" opacity="0.66" filter="url(#glow)"/>
+  <circle cx="626.0" cy="313.9" r="9.1" fill="url(#grad)" opacity="0.66" filter="url(#glow)"/>
+  <circle cx="835.7" cy="306.6" r="9.0" fill="url(#grad)" opacity="0.65" filter="url(#glow)"/>
+  <circle cx="860.4" cy="527.1" r="8.9" fill="url(#grad)" opacity="0.64" filter="url(#glow)"/>
+  <circle cx="905.9" cy="454.9" r="8.9" fill="url(#grad)" opacity="0.64" filter="url(#glow)"/>
+  <circle cx="684.2" cy="270.1" r="8.8" fill="url(#grad)" opacity="0.63" filter="url(#glow)"/>
+  <circle cx="921.8" cy="395.4" r="8.8" fill="url(#grad)" opacity="0.63" filter="url(#glow)"/>
+  <circle cx="783.9" cy="267.7" r="8.8" fill="url(#grad)" opacity="0.63" filter="url(#glow)"/>
+  <circle cx="525.5" cy="383.6" r="8.7" fill="url(#grad)" opacity="0.62" filter="url(#glow)"/>
+  <circle cx="901.1" cy="299.0" r="8.6" fill="url(#grad)" opacity="0.61" filter="url(#glow)"/>
+  <circle cx="953.7" cy="313.2" r="8.6" fill="url(#grad)" opacity="0.60" filter="url(#glow)"/>
+  <circle cx="744.8" cy="228.6" r="8.5" fill="url(#grad)" opacity="0.59" filter="url(#glow)"/>
+  <circle cx="893.9" cy="233.4" r="8.2" fill="url(#grad)" opacity="0.56" filter="url(#glow)"/>
+  <circle cx="829.3" cy="197.9" r="8.1" fill="url(#grad)" opacity="0.55" filter="url(#glow)"/>
+  <circle cx="964.9" cy="238.9" r="8.1" fill="url(#grad)" opacity="0.55" filter="url(#glow)"/>
+  <circle cx="935.4" cy="148.7" r="7.9" fill="url(#grad)" opacity="0.53" filter="url(#glow)"/>
+  <circle cx="557.4" cy="391.5" r="7.8" fill="url(#grad)" opacity="0.52" filter="url(#glow)"/>
+  <circle cx="799.8" cy="155.6" r="7.8" fill="url(#grad)" opacity="0.52" filter="url(#glow)"/>
+  <circle cx="878.0" cy="106.3" r="7.7" fill="url(#grad)" opacity="0.50" filter="url(#glow)"/>
+  <circle cx="574.1" cy="432.8" r="7.4" fill="url(#grad)" opacity="0.47" filter="url(#glow)"/>
+  <circle cx="642.7" cy="514.2" r="6.9" fill="url(#grad)" opacity="0.42" filter="url(#glow)"/>
+  <circle cx="683.4" cy="428.9" r="6.8" fill="url(#grad)" opacity="0.41" filter="url(#glow)"/>
+  <circle cx="641.9" cy="554.2" r="6.8" fill="url(#grad)" opacity="0.41" filter="url(#glow)"/>
+  <circle cx="662.7" cy="385.8" r="6.8" fill="url(#grad)" opacity="0.40" filter="url(#glow)"/>
+  <circle cx="697.7" cy="455.6" r="6.8" fill="url(#grad)" opacity="0.40" filter="url(#glow)"/>
+  <circle cx="729.6" cy="515.3" r="6.7" fill="url(#grad)" opacity="0.39" filter="url(#glow)"/>
+  <circle cx="641.9" cy="366.8" r="6.6" fill="url(#grad)" opacity="0.38" filter="url(#glow)"/>
+  <circle cx="776.7" cy="417.4" r="6.5" fill="url(#grad)" opacity="0.37" filter="url(#glow)"/>
+  <circle cx="615.0" cy="440.0" r="6.0" fill="url(#grad)" opacity="0.55" filter="url(#glow)"/>
+  <circle cx="655.0" cy="408.0" r="6.0" fill="url(#grad)" opacity="0.55" filter="url(#glow)"/>
+  <circle cx="695.0" cy="436.0" r="6.0" fill="url(#grad)" opacity="0.55" filter="url(#glow)"/>
+  <circle cx="732.0" cy="404.0" r="6.0" fill="url(#grad)" opacity="0.55" filter="url(#glow)"/>
+  <circle cx="665.0" cy="466.0" r="6.0" fill="url(#grad)" opacity="0.55" filter="url(#glow)"/>
+  <!-- center logo mark (iteration_9) -->
+  <rect x="432.0" y="446.7" width="160.0" height="160.0" rx="40.0" fill="none" stroke="url(#gradL)" stroke-width="13" stroke-linejoin="round" filter="url(#glowBox)"/>
+  <line x1="472.0" y1="486.7" x2="392.0" y2="406.7" stroke="url(#gradL)" stroke-width="11" stroke-linecap="round" filter="url(#glowBox)"/>
+  <line x1="552.0" y1="486.7" x2="632.0" y2="406.7" stroke="url(#gradL)" stroke-width="11" stroke-linecap="round" filter="url(#glowBox)"/>
+  <line x1="472.0" y1="566.7" x2="392.0" y2="646.7" stroke="url(#gradL)" stroke-width="11" stroke-linecap="round" filter="url(#glowBox)"/>
+  <line x1="552.0" y1="566.7" x2="632.0" y2="646.7" stroke="url(#gradL)" stroke-width="11" stroke-linecap="round" filter="url(#glowBox)"/>
+  <circle cx="472.0" cy="486.7" r="11.0" fill="url(#gradL)" filter="url(#glowBox)"/>
+  <circle cx="552.0" cy="486.7" r="11.0" fill="url(#gradL)" filter="url(#glowBox)"/>
+  <circle cx="472.0" cy="566.7" r="11.0" fill="url(#gradL)" filter="url(#glowBox)"/>
+  <circle cx="552.0" cy="566.7" r="11.0" fill="url(#gradL)" filter="url(#glowBox)"/>
+  <circle cx="392.0" cy="406.7" r="14.0" fill="url(#gradL)" filter="url(#glowBox)"/>
+  <circle cx="632.0" cy="406.7" r="14.0" fill="url(#gradL)" filter="url(#glowBox)"/>
+  <circle cx="392.0" cy="646.7" r="14.0" fill="url(#gradL)" filter="url(#glowBox)"/>
+  <circle cx="632.0" cy="646.7" r="14.0" fill="url(#gradL)" filter="url(#glowBox)"/>
+</svg>
+  </div>
+</div>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <span class="stat-num">100%</span>
+    <span class="stat-label">autonomia<br>no atendimento</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">24h</span>
+    <span class="stat-label">sem parar,<br>sem folga</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">2+</span>
+    <span class="stat-label">negócios<br>em produção</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-num">0</span>
+    <span class="stat-label">clientes<br>sem resposta</span>
+  </div>
+</div>
+
+<!-- MANIFESTO -->
+<div class="manifesto">
+  <div class="manifesto-bg"></div>
+  <p style="font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--cyan);margin-bottom:24px;">Nossa visão</p>
+  <p class="manifesto-quote">
+    <em>AI4ALL Platform democratiza</em> a inteligência artificial para pequenos negócios. Não importa o setor, o tamanho ou o desafio — a tecnologia certa, aplicada do jeito certo.
+  </p>
+  <p class="manifesto-body">
+    Grandes empresas têm equipes inteiras de tecnologia. Pequenos negócios têm você. A AI4ALL Platform muda esse jogo — agentes de IA que trabalham como colaboradores reais, disponíveis 24 horas, sete dias por semana, sem custo de folha.
+  </p>
+</div>
+
+<!-- HOW IT WORKS -->
+<div class="section">
+  <p class="section-eyebrow">Como funciona</p>
+  <h2 class="section-title">Uma plataforma.<br>Infinitas aplicações.</h2>
+  <p class="section-sub">A AI4ALL Platform entrega agentes de IA configurados para o seu negócio — não um chatbot genérico, mas um colaborador digital que entende o seu contexto.</p>
+  <div class="steps-row">
+    <div class="step">
+      <span class="step-num">1</span>
+      <div class="step-icon" style="background:var(--cyan-soft); color:var(--cyan);">⚙️</div>
+      <h3>Configuramos para você</h3>
+      <p>Entendemos seu negócio — serviços, horários, linguagem, regras — e configuramos um agente que representa sua empresa com profissionalismo.</p>
+    </div>
+    <div class="step">
+      <span class="step-num">2</span>
+      <div class="step-icon" style="background:rgba(60,95,255,0.12); color:#5C7FFF;">🤖</div>
+      <h3>A IA atende e executa</h3>
+      <p>Seu agente atende clientes no WhatsApp, agenda, cancela, responde dúvidas e resolve — tudo em português natural, sem scripts rígidos.</p>
+    </div>
+    <div class="step">
+      <span class="step-num">3</span>
+      <div class="step-icon" style="background:var(--purple-soft); color:#A855F7;">📊</div>
+      <h3>Você acompanha e controla</h3>
+      <p>Dashboard completo para ver agenda, conversas e métricas. Quando necessário, assuma o atendimento com um clique — a IA silencia automaticamente.</p>
+    </div>
+  </div>
+</div>
+
+<!-- PLATFORM PILLARS -->
+<div style="background:var(--bg2); padding: 0 0 110px;">
+  <div class="section" style="padding-bottom:0;">
+    <p class="section-eyebrow">A plataforma</p>
+    <h2 class="section-title">Construída para<br>negócios reais</h2>
+    <p class="section-sub">Não é mais um chatbot. É uma plataforma de agentes de IA com motor proprietário, memória de clientes e controle total para o dono do negócio.</p>
+    <div class="pillars-grid">
+      <div class="pillar">
+        <div class="pillar-icon" style="background:rgba(0,207,255,0.1); color:var(--cyan);">💬</div>
+        <h3>Agente conversacional autônomo</h3>
+        <p>Raciocina a cada mensagem, toma decisões e responde em português natural — sem fluxos fixos, sem menus, sem robô.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon" style="background:rgba(123,47,255,0.1); color:#A855F7;">🧠</div>
+        <h3>Memória de clientes</h3>
+        <p>O agente lembra de cada cliente entre sessões — histórico, preferências, contexto — para um atendimento cada vez mais personalizado.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon" style="background:rgba(60,95,255,0.1); color:#5C7FFF;">🗓️</div>
+        <h3>Agendamento integrado</h3>
+        <p>Cria, cancela e reagenda compromissos automaticamente. Integra com sistemas existentes como Trinks, Google Calendar e mais.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon" style="background:rgba(34,197,94,0.1); color:#22C55E;">🔄</div>
+        <h3>Handoff humano</h3>
+        <p>Quando o assunto pede atenção humana, o agente transfere com contexto completo e silencia. Você assume sem retrabalho.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon" style="background:rgba(251,191,36,0.1); color:#FBBF24;">🔔</div>
+        <h3>Lembretes proativos</h3>
+        <p>O agente avisa seus clientes antes do compromisso — reduz faltas, aumenta comparecimento, sem você precisar fazer nada.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon" style="background:rgba(239,68,68,0.1); color:#EF4444;">🔒</div>
+        <h3>Segurança e isolamento</h3>
+        <p>Cada negócio tem seus dados completamente isolados. Detecção de manipulação ativa, logs completos, controle total.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- VERTICALS -->
+<div class="verticals-section">
+  <div class="verticals-inner">
+    <p class="section-eyebrow">Setores</p>
+    <h2 class="section-title">Para qualquer<br>pequeno negócio</h2>
+    <p class="section-sub">A plataforma é agnóstica de setor. Se você atende clientes, tem agenda ou recebe mensagens — a AI4ALL Platform trabalha para você.</p>
+    <div class="verticals-grid">
+      <div class="vertical-card active">
+        <span class="vertical-emoji">🦷</span>
+        <div class="vertical-name">Clínica Odontológica</div>
+        <div class="vertical-desc">Agendamento, confirmações e atendimento 24h</div>
+        <span class="vertical-badge">Em produção</span>
+      </div>
+      <div class="vertical-card active">
+        <span class="vertical-emoji">✂️</span>
+        <div class="vertical-name">Barbearia & Salão</div>
+        <div class="vertical-desc">Escolha de barbeiro, serviços e horários</div>
+        <span class="vertical-badge">Em breve</span>
+      </div>
+      <div class="vertical-card">
+        <span class="vertical-emoji">🏥</span>
+        <div class="vertical-name">Clínica Médica</div>
+        <div class="vertical-desc">Consultas, exames e retornos automatizados</div>
+      </div>
+      <div class="vertical-card">
+        <span class="vertical-emoji">🏋️</span>
+        <div class="vertical-name">Academia & Wellness</div>
+        <div class="vertical-desc">Aulas, avaliações e pacotes de serviços</div>
+      </div>
+      <div class="vertical-card">
+        <span class="vertical-emoji">🔧</span>
+        <div class="vertical-name">Oficina & Serviços</div>
+        <div class="vertical-desc">Orçamentos, agendamentos e status de serviço</div>
+      </div>
+      <div class="vertical-card">
+        <span class="vertical-emoji">🍽️</span>
+        <div class="vertical-name">Restaurante</div>
+        <div class="vertical-desc">Reservas, pedidos e atendimento ao cliente</div>
+      </div>
+      <div class="vertical-card">
+        <span class="vertical-emoji">📚</span>
+        <div class="vertical-name">Escola & Cursos</div>
+        <div class="vertical-desc">Matrículas, dúvidas e comunicados automáticos</div>
+      </div>
+      <div class="vertical-card">
+        <span class="vertical-emoji">➕</span>
+        <div class="vertical-name">Seu negócio</div>
+        <div class="vertical-desc">Se você atende clientes, nós temos uma solução</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CASE REAL -->
+<div class="section">
+  <p class="section-eyebrow">Case real</p>
+  <div class="case-wrap">
+    <div>
+      <h2 class="section-title">Piloto em produção:<br>Clínica Lucas</h2>
+      <p style="font-size:16px; color:var(--text2); line-height:1.7; font-weight:300; margin-bottom:32px;">O agente <strong style="color:var(--text);font-weight:500;">Ana</strong> atende os pacientes da clínica do Dr. Lucas no WhatsApp — 24 horas por dia, 7 dias por semana. Agenda, cancela, reagenda e responde dúvidas sem intervenção humana.</p>
+      <div class="case-results">
+        <div class="case-metric">
+          <div class="case-metric-num">100%</div>
+          <div class="case-metric-label">agendamentos sem intervenção</div>
+        </div>
+        <div class="case-metric">
+          <div class="case-metric-num">24h</div>
+          <div class="case-metric-label">disponível ininterruptamente</div>
+        </div>
+        <div class="case-metric">
+          <div class="case-metric-num">0</div>
+          <div class="case-metric-label">mensagens sem resposta</div>
+        </div>
+      </div>
+    </div>
+    <div class="case-phone">
+      <div class="case-tag">✦ Conversa real</div>
+      <div class="case-phone-header">
+        <div class="case-avatar">A</div>
+        <div>
+          <div class="case-agent-name">Ana · AI4ALL Platform</div>
+          <div class="case-agent-status">● online agora</div>
+        </div>
+      </div>
+      <div class="msg bot"><div class="bubble bot">Olá! Sou a Ana, assistente da Clínica Lucas. Como posso te ajudar? 😊</div></div>
+      <div class="msg user"><div class="bubble user">Oi, quero marcar uma consulta pra sexta</div></div>
+      <div class="msg bot"><div class="bubble bot">Claro! Temos esses horários disponíveis na sexta:<br><br>• 09h00 — Consulta geral<br>• 14h00 — Consulta geral<br>• 16h30 — Consulta geral<br><br>Qual prefere?</div></div>
+      <div class="msg user"><div class="bubble user">14h tá ótimo</div></div>
+      <div class="msg bot"><div class="bubble bot">✅ Confirmado!<br><br>📅 Sexta, 06/06 às 14h00<br>📍 Clínica Lucas<br><br>Vou te enviar um lembrete na véspera. Qualquer dúvida, é só chamar!</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- TESTIMONIAL -->
+<div class="testimonial-wrap">
+  <div class="testimonial-inner">
+    <p style="text-align:center;font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--cyan);margin-bottom:32px;">Quem usa</p>
+    <div class="testimonial-card">
+      <p class="testimonial-text">Antes eu perdia agendamentos porque não conseguia responder rápido no WhatsApp. Agora o agente cuida de tudo — inclusive à noite e nos finais de semana. É como ter uma recepcionista que nunca falta.</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">L</div>
+        <div>
+          <div class="author-name">Dr. Lucas</div>
+          <div class="author-role">Dentista · Cliente AI4ALL Platform desde 2026</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- VISION / ABOUT -->
+<div class="vision-section">
+  <div class="vision-inner">
+    <div>
+      <p class="section-eyebrow">Sobre a AI4ALL Platform</p>
+      <h2 class="section-title">Tecnologia de ponta,<br>ao alcance de todos</h2>
+      <p style="font-size:16px; color:var(--text2); line-height:1.75; font-weight:300;">Empresas grandes têm times inteiros de IA. Pequenos negócios merecem o mesmo poder — sem complexidade, sem custo proibitivo, sem precisar entender de tecnologia.</p>
+    </div>
+    <div class="vision-values">
+      <div class="value-item">
+        <div class="value-dot"></div>
+        <div class="value-text">
+          <h4>Democratização real</h4>
+          <p>IA acessível não é só preço baixo — é uma solução que qualquer dono de negócio consegue usar e confiar.</p>
+        </div>
+      </div>
+      <div class="value-item">
+        <div class="value-dot"></div>
+        <div class="value-text">
+          <h4>Resultado, não promessa</h4>
+          <p>Cada cliente da AI4ALL Platform tem um agente rodando em produção, atendendo clientes reais. Não é piloto — é entrega.</p>
+        </div>
+      </div>
+      <div class="value-item">
+        <div class="value-dot"></div>
+        <div class="value-text">
+          <h4>Parceria de longo prazo</h4>
+          <p>Não vendemos software. Somos o time de IA do seu negócio — evoluímos junto com ele.</p>
+        </div>
+      </div>
+      <div class="value-item">
+        <div class="value-dot"></div>
+        <div class="value-text">
+          <h4>Construído no Brasil, para o Brasil</h4>
+          <p>Português nativo, realidade do mercado brasileiro, integração com as ferramentas que os negócios já usam.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-section">
+  <div class="cta-bg"></div>
+  <p style="font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--cyan);margin-bottom:24px;">Vamos conversar</p>
+  <h2>Seu negócio merece<br><span class="grad-text">trabalhar com IA</span></h2>
+  <p>Deixa seu e-mail — entraremos em contato para entender seu negócio e mostrar como a AI4ALL Platform pode ajudar.</p>
+  <div class="cta-form">
+    <input class="cta-input" type="email" placeholder="seu@email.com">
+    <button class="cta-btn">Falar com a gente</button>
+  </div>
+  <p class="cta-note">Sem compromisso. Resposta em até 24h. Feito no Brasil 🇧🇷</p>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <a class="logo" href="#" style="text-decoration:none;">
+      <svg width="24" height="24" viewBox="0 0 80 80" fill="none">
+        <defs><linearGradient id="fg2" x1="0" y1="0" x2="80" y2="80" gradientUnits="userSpaceOnUse"><stop stop-color="#00CFFF"/><stop offset="1" stop-color="#7B2FFF"/></linearGradient></defs>
+        <rect x="18" y="18" width="44" height="44" rx="12" stroke="url(#fg2)" stroke-width="4" fill="none"/>
+        <circle cx="29" cy="29" r="4" fill="url(#fg2)"/>
+        <circle cx="51" cy="29" r="4" fill="url(#fg2)"/>
+        <circle cx="29" cy="51" r="4" fill="url(#fg2)"/>
+        <circle cx="51" cy="51" r="4" fill="url(#fg2)"/>
+      </svg>
+      <span class="logo-text">AI4ALL Platform</span>
+    </a>
+    <p class="footer-tagline">Inteligência artificial para todo pequeno negócio. Feito no Brasil.</p>
+  </div>
+  <div class="footer-col">
+    <h4>Plataforma</h4>
+    <a href="#">Como funciona</a>
+    <a href="#">Setores atendidos</a>
+    <a href="#">Cases</a>
+    <a href="#">Dashboard</a>
+  </div>
+  <div class="footer-col">
+    <h4>Empresa</h4>
+    <a href="#">Sobre nós</a>
+    <a href="#">Visão</a>
+    <a href="#">Contato</a>
+  </div>
+  <div class="footer-col">
+    <h4>Legal</h4>
+    <a href="#">Privacidade</a>
+    <a href="#">Termos de uso</a>
+  </div>
+</footer>
+<div class="footer-bottom">
+  <p>© 2026 AI4ALL Platform. Todos os direitos reservados.</p>
+  <p>Feito com IA 🤖 no Brasil 🇧🇷</p>
+</div>
+
+</body>
+</html>

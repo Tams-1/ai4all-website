@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Política de Privacidade — Grupo Fani · AI4ALL Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --cyan: #00CFFF; --purple: #7B2FFF;
+  --cyan-soft: rgba(0,207,255,0.12); --purple-soft: rgba(123,47,255,0.12);
+  --bg: #000000; --bg2: #080810; --bg3: #0D0D1A; --bg4: #111122;
+  --border: rgba(255,255,255,0.07); --border-bright: rgba(255,255,255,0.14);
+  --text: #FFFFFF; --text2: rgba(255,255,255,0.60); --text3: rgba(255,255,255,0.30);
+  --grad: linear-gradient(90deg, #00CFFF, #7B2FFF);
+  --red: #FF4444;
+}
+body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 20px 64px; background: rgba(0,0,0,0.75); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
+.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.logo-text { font-family: 'Syne', sans-serif; font-size: 17px; font-weight: 800; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: -0.3px; }
+.nav-divider { width: 1px; height: 20px; background: var(--border-bright); margin: 0 4px; }
+.nav-client { font-size: 13px; color: var(--text3); }
+.nav-back { font-size: 13px; color: var(--text2); text-decoration: none; transition: color .2s; }
+.nav-back:hover { color: var(--text); }
+.doc-header { padding: 120px 64px 60px; background: var(--bg2); border-bottom: 1px solid var(--border); position: relative; overflow: hidden; }
+.doc-header-bg { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse 50% 80% at 20% 50%, rgba(0,207,255,0.05) 0%, transparent 60%); }
+.doc-header-inner { max-width: 860px; margin: 0 auto; position: relative; }
+.eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--cyan); margin-bottom: 14px; }
+.doc-header h1 { font-family: 'Syne', sans-serif; font-size: clamp(28px, 4vw, 44px); font-weight: 800; letter-spacing: -1.5px; line-height: 1.1; margin-bottom: 24px; }
+.grad-text { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.doc-meta { display: flex; gap: 24px; flex-wrap: wrap; }
+.doc-meta-item { font-size: 13px; color: var(--text3); padding: 6px 14px; background: var(--bg3); border: 1px solid var(--border); border-radius: 6px; }
+.doc-meta-item strong { color: var(--text2); font-weight: 500; }
+.doc-body { max-width: 860px; margin: 0 auto; padding: 64px; }
+.doc-body h2 { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 700; letter-spacing: -0.3px; color: var(--text); margin: 48px 0 16px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
+.doc-body h2:first-child { margin-top: 0; }
+.doc-body h3 { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; color: var(--text); margin: 24px 0 10px; }
+.doc-body p { font-size: 15px; color: var(--text2); line-height: 1.85; margin-bottom: 14px; font-weight: 300; }
+.doc-body ul { margin: 0 0 14px 0; list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.doc-body ul li { font-size: 15px; color: var(--text2); line-height: 1.75; font-weight: 300; padding-left: 18px; position: relative; }
+.doc-body ul li::before { content: '—'; position: absolute; left: 0; color: var(--cyan); font-size: 12px; top: 4px; }
+.doc-body strong { color: var(--text); font-weight: 500; }
+.doc-body a { color: var(--cyan); text-decoration: none; }
+.doc-body a:hover { text-decoration: underline; }
+.todo { color: var(--red) !important; font-weight: 500; }
+.highlight-box { background: var(--cyan-soft); border: 1px solid rgba(0,207,255,0.2); border-radius: 12px; padding: 18px 22px; margin: 20px 0; font-size: 14px; color: var(--text2); line-height: 1.7; }
+.highlight-box strong { color: var(--cyan); }
+.warning-box { background: rgba(255,68,68,0.08); border: 1px solid rgba(255,68,68,0.2); border-radius: 12px; padding: 18px 22px; margin: 20px 0; font-size: 14px; color: rgba(255,180,180,0.9); line-height: 1.7; }
+.warning-box strong { color: var(--red); }
+.table-wrap { overflow-x: auto; margin: 20px 0; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th { background: var(--bg3); color: var(--text); font-family: 'Syne', sans-serif; font-weight: 700; font-size: 13px; padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--border-bright); }
+td { padding: 12px 16px; color: var(--text2); border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.6; font-weight: 300; }
+tr:last-child td { border-bottom: none; }
+footer { border-top: 1px solid var(--border); padding: 40px 64px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+.footer-left { font-size: 12px; color: var(--text3); line-height: 1.8; }
+.footer-right { font-size: 12px; color: var(--text3); }
+.footer-brand { font-weight: 600; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+@media (max-width: 768px) {
+  nav { padding: 16px 24px; } .nav-client { display: none; }
+  .doc-header { padding: 90px 24px 40px; }
+  .doc-body { padding: 40px 24px; }
+  footer { padding: 28px 24px; flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="/index.html">
+    <svg width="28" height="28" viewBox="0 0 80 80" fill="none">
+      <defs><linearGradient id="ng" x1="0" y1="0" x2="80" y2="80" gradientUnits="userSpaceOnUse"><stop stop-color="#00CFFF"/><stop offset="1" stop-color="#7B2FFF"/></linearGradient></defs>
+      <rect x="18" y="18" width="44" height="44" rx="12" stroke="url(#ng)" stroke-width="4" fill="none"/>
+      <circle cx="29" cy="29" r="4" fill="url(#ng)"/><circle cx="51" cy="29" r="4" fill="url(#ng)"/>
+      <circle cx="29" cy="51" r="4" fill="url(#ng)"/><circle cx="51" cy="51" r="4" fill="url(#ng)"/>
+      <line x1="8" y1="8" x2="24" y2="24" stroke="url(#ng)" stroke-width="3" stroke-linecap="round"/>
+      <line x1="72" y1="8" x2="56" y2="24" stroke="url(#ng)" stroke-width="3" stroke-linecap="round"/>
+      <line x1="8" y1="72" x2="24" y2="56" stroke="url(#ng)" stroke-width="3" stroke-linecap="round"/>
+      <line x1="72" y1="72" x2="56" y2="56" stroke="url(#ng)" stroke-width="3" stroke-linecap="round"/>
+    </svg>
+    <span class="logo-text">AI4ALL Platform</span>
+  </a>
+  <div style="display:flex;align-items:center;gap:12px;">
+    <div class="nav-divider"></div>
+    <span class="nav-client">Grupo Fani</span>
+  </div>
+  <a class="nav-back" href="index.html">← Voltar</a>
+</nav>
+
+<div class="doc-header">
+  <div class="doc-header-bg"></div>
+  <div class="doc-header-inner">
+    <p class="eyebrow">Grupo Fani · Documento Legal</p>
+    <h1>Política de <span class="grad-text">Privacidade</span></h1>
+    <div class="doc-meta">
+      <div class="doc-meta-item"><strong>Versão</strong> 1.0</div>
+      <div class="doc-meta-item"><strong>Vigência</strong> 07 de junho de 2026</div>
+      <div class="doc-meta-item"><strong>Atualização</strong> 07 de junho de 2026</div>
+    </div>
+  </div>
+</div>
+
+<div class="doc-body">
+
+  <p>Este documento descreve como os dados pessoais das revendedoras são coletados, tratados e protegidos no âmbito do sistema de comunicação via WhatsApp operado pelo Grupo Fani, franqueado do Grupo Boticário, em conformidade com a Lei Geral de Proteção de Dados (LGPD — Lei nº 13.709/2018) e com o Manual de Operações e Anexo I do Grupo Boticário.</p>
+
+  <h2>1. Identificação do Controlador</h2>
+  <p>O tratamento de dados pessoais descrito nesta Política é realizado sob responsabilidade do seguinte Controlador:</p>
+  <ul>
+    <li><strong>Razão Social:</strong> ARPEL DISTRIBUIDORA DE COSMETICOS LTDA</li>
+    <li><strong>Nome Fantasia:</strong> Grupo Fani</li>
+    <li><strong>CNPJ:</strong> 15.746.172/0001-86</li>
+    <li><strong>Endereço:</strong> Rua Paissandu — Centro — São Bernardo do Campo/SP — CEP 09721-240</li>
+    <li><strong>E-mail de contato:</strong> suporte@ai4allplatform.com</li>
+    <li><strong>Encarregado de Proteção de Dados (DPO):</strong> <span class="todo">[NOME DO DPO]</span></li>
+    <li><strong>Contato do DPO:</strong> <span class="todo">[E-MAIL DO DPO]</span></li>
+  </ul>
+  <p>O Grupo Boticário (Boticário Franchising Ltda.) atua como Controlador dos dados cadastrais originais das revendedoras. O Grupo Fani atua como Operador no contexto deste sistema, tratando os dados conforme as instruções da franqueadora e as diretrizes do Manual de Operações.</p>
+
+  <h2>2. Dados Pessoais Tratados</h2>
+  <h3>2.1 Categorias de dados</h3>
+  <ul>
+    <li>Nome completo da revendedora</li>
+    <li>Número de telefone celular (WhatsApp)</li>
+    <li>Histórico de atividade comercial (última compra, status cadastral)</li>
+    <li>Segmentação por perfil de crédito (quando aplicável para personalização da mensagem)</li>
+    <li>Registro de consentimento (opt-in/opt-out) com data, hora e canal</li>
+    <li>Registro de interações com as mensagens enviadas (entrega, leitura, resposta)</li>
+  </ul>
+  <h3>2.2 Dados não coletados</h3>
+  <p>Este sistema não coleta dados sensíveis (saúde, biometria, origem racial, convicções religiosas ou políticas), dados bancários, dados de menores de 18 anos, nem realiza monitoramento contínuo de localização.</p>
+
+  <h2>3. Finalidade do Tratamento e Base Legal</h2>
+  <p>Os dados são tratados exclusivamente para as finalidades abaixo, com as respectivas bases legais da LGPD:</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Finalidade</th><th>Base Legal</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Reativação comercial de revendedoras inativas mediante envio de mensagem via WhatsApp</td>
+          <td>Legítimo Interesse do Controlador (art. 7º, IX, LGPD), condicionado à validação prévia de opt-in</td>
+        </tr>
+        <tr>
+          <td>Segmentação e personalização das mensagens com base em perfil cadastral</td>
+          <td>Legítimo Interesse, limitado às informações disponíveis no cadastro Boticário</td>
+        </tr>
+        <tr>
+          <td>Registro e controle de consentimento (opt-in/opt-out)</td>
+          <td>Cumprimento de obrigação legal (art. 7º, II) e Consentimento (art. 7º, I)</td>
+        </tr>
+        <tr>
+          <td>Atendimento a direitos dos titulares</td>
+          <td>Cumprimento de obrigação legal</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="warning-box"><strong>Atenção:</strong> Nenhum envio de mensagem será realizado para revendedoras que não tenham fornecido opt-in válido. Esta é uma condição inegociável do sistema.</div>
+
+  <h2>4. Funcionamento do Sistema e Fluxo de Dados</h2>
+  <h3>4.1 Fluxo de dados</h3>
+  <ul>
+    <li>Os dados das revendedoras são importados da base do Grupo Boticário, já disponível ao Grupo Fani no contexto da relação comercial</li>
+    <li>Antes de qualquer envio, o sistema verifica a existência de opt-in válido para aquela revendedora</li>
+    <li>As mensagens são enviadas via API do WhatsApp Business (Meta Cloud API), utilizando templates previamente aprovados pelo Grupo Boticário e pela Meta</li>
+    <li>Os dados trafegam pelos servidores da Meta exclusivamente como canal de transmissão — nenhum dado é armazenado de forma permanente pela Meta para finalidade distinta da entrega da mensagem</li>
+    <li>Todos os registros de envio, consentimento e interação são armazenados em banco de dados hospedado no Brasil</li>
+  </ul>
+  <h3>4.2 Transferência internacional</h3>
+  <p>O envio de mensagens via WhatsApp implica o tráfego de dados pelos servidores da Meta Platforms, Inc. (EUA). Esta transferência é tecnicamente necessária para a entrega das mensagens e ocorre nos termos dos mecanismos de proteção aceitos pela ANPD, conforme cláusulas contratuais padrão da Meta. Os dados pessoais das revendedoras não são armazenados permanentemente nos servidores da Meta e não são utilizados por ela para finalidades diversas da entrega da mensagem.</p>
+  <p>Esta configuração está alinhada à interpretação adotada no âmbito do Anexo I (cláusula 2.9) do Manual de Operações do Grupo Boticário, que trata do armazenamento local e transferência internacional.</p>
+
+  <h2>5. Compartilhamento de Dados</h2>
+  <ul>
+    <li><strong>Meta Platforms, Inc.</strong> — canal de transmissão de mensagens via WhatsApp Business API, nos termos da Política de Privacidade e Termos de Serviço da própria Meta</li>
+    <li><strong>Grupo Boticário</strong> — na qualidade de Controlador original dos dados das revendedoras, para fins de auditoria, compliance e supervisão</li>
+    <li><strong>AI4ALL Platform</strong> — operadora tecnológica de automação e envio, sem acesso autônomo aos dados para fins próprios</li>
+    <li><strong>Autoridades públicas</strong> — quando exigido por lei ou por ordem judicial</li>
+  </ul>
+  <p>Não há venda, cessão gratuita ou compartilhamento dos dados para fins publicitários de terceiros.</p>
+
+  <h2>6. Retenção e Exclusão de Dados</h2>
+  <p>Os dados de envio e interação serão retidos por <span class="todo">[PRAZO DE RETENÇÃO — ex: 24 meses]</span> após o último contato, ou pelo prazo mínimo exigido pela legislação fiscal e comercial aplicável.</p>
+  <p>Os registros de opt-in e opt-out são mantidos pelo período necessário para comprovação de conformidade junto à ANPD, ao Grupo Boticário e a eventuais auditorias.</p>
+  <p>Ao término do contrato entre o Grupo Fani e o Grupo Boticário, ou quando solicitado, os dados serão devolvidos ou excluídos, inclusive de backups, conforme o item 3.5 do Anexo I.</p>
+
+  <h2>7. Segurança da Informação</h2>
+  <ul>
+    <li>Autenticação com tokens de acesso de curta duração para a API da Meta</li>
+    <li>Banco de dados com acesso restrito e criptografado, hospedado no Brasil</li>
+    <li>Controle de logs de acesso aos dados pessoais (cláusula 2.8 do Anexo I)</li>
+    <li>Mecanismo de throttle (limitação de volume de envio) para prevenção de abuso</li>
+    <li>Segregação de ambientes de desenvolvimento e produção</li>
+    <li>Plano de Resposta a Incidentes documentado, com prazo de notificação ao titular e à ANPD em até 48 horas (art. 48 da LGPD)</li>
+    <li>NDA assinado por todos os colaboradores e prestadores de serviço com acesso aos dados</li>
+  </ul>
+
+  <h2>8. Direitos dos Titulares</h2>
+  <p>As revendedoras cujos dados são tratados por este sistema possuem os seguintes direitos, garantidos pelos artigos 17 a 22 da LGPD:</p>
+  <ul>
+    <li>Confirmação da existência de tratamento</li>
+    <li>Acesso aos dados pessoais</li>
+    <li>Correção de dados incompletos, inexatos ou desatualizados</li>
+    <li>Anonimização, bloqueio ou eliminação de dados desnecessários ou tratados em desconformidade</li>
+    <li>Portabilidade dos dados a outro fornecedor ou prestador de serviço</li>
+    <li>Eliminação dos dados tratados com base no consentimento</li>
+    <li>Revogação do consentimento (opt-out) a qualquer momento, sem prejuízo</li>
+    <li>Oposição ao tratamento com base em legítimo interesse</li>
+    <li>Informação sobre compartilhamento com terceiros</li>
+  </ul>
+  <p>Para exercer qualquer destes direitos:</p>
+  <ul>
+    <li><strong>E-mail:</strong> <span class="todo">[E-MAIL DO DPO OU CANAL DE ATENDIMENTO]</span></li>
+    <li><strong>Formulário:</strong> <span class="todo">[URL DO FORMULÁRIO DE DIREITOS DOS TITULARES]</span></li>
+  </ul>
+  <p>O prazo de resposta é de até <strong>15 dias úteis</strong>, conforme a LGPD.</p>
+
+  <h2>9. Como Cancelar o Recebimento de Mensagens (Opt-out)</h2>
+  <div class="highlight-box">
+    Para cancelar o recebimento de mensagens a qualquer momento, responda <strong>SAIR</strong>, <strong>PARAR</strong> ou <strong>NÃO QUERO</strong> diretamente na conversa do WhatsApp, ou solicite pelo canal de atendimento indicado na seção 8. O opt-out é processado imediatamente e nenhuma nova mensagem será enviada após a solicitação.
+  </div>
+
+  <h2>10. Rastreamento nas Mensagens</h2>
+  <p>As mensagens enviadas podem conter indicadores de entrega e leitura nativos do WhatsApp, controlados pela própria plataforma Meta. O sistema registra o status de entrega das mensagens (enviado, entregue, lido) para fins operacionais e de mensuração de resultados. Não são utilizados pixels de rastreamento, cookies ou tecnologias de monitoramento externas ao WhatsApp.</p>
+
+  <h2>11. Alterações nesta Política</h2>
+  <p>Esta Política pode ser atualizada periodicamente para refletir mudanças operacionais, legais ou regulatórias. A versão vigente estará sempre disponível em <strong>ai4allplatform.com/clientes/grupo-fani/privacy-policy</strong>. Alterações substanciais serão comunicadas às revendedoras com antecedência mínima de 30 dias.</p>
+
+  <h2>12. Contato e Canal de Atendimento</h2>
+  <ul>
+    <li><strong>DPO — Encarregado de Proteção de Dados:</strong> <span class="todo">[NOME DO DPO]</span></li>
+    <li><strong>E-mail:</strong> <span class="todo">[E-MAIL DO DPO]</span></li>
+    <li><strong>Telefone:</strong> <span class="todo">[TELEFONE — OPCIONAL]</span></li>
+    <li><strong>Endereço:</strong> Rua Paissandu — Centro — São Bernardo do Campo/SP — CEP 09721-240</li>
+  </ul>
+  <p>Você também pode registrar reclamações junto à Autoridade Nacional de Proteção de Dados (ANPD): <a href="https://www.gov.br/anpd" target="_blank">www.gov.br/anpd</a></p>
+
+</div>
+
+<footer>
+  <div class="footer-left">ARPEL DISTRIBUIDORA DE COSMETICOS LTDA · CNPJ 15.746.172/0001-86 · suporte@ai4allplatform.com</div>
+  <div class="footer-right">Tecnologia <span class="footer-brand">AI4ALL Platform</span> · © 2026</div>
+</footer>
+
+</body>
+</html>
