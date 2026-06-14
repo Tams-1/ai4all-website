@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Termos de Uso — AI4ALL Platform</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --cyan: #00CFFF;
+    --purple: #7B2FFF;
+    --bg: #000000;
+    --bg2: #0A0A0F;
+    --bg3: #0F0F1A;
+    --border: rgba(255,255,255,0.08);
+    --text: #FFFFFF;
+    --text2: rgba(255,255,255,0.65);
+    --text3: rgba(255,255,255,0.35);
+    --grad: linear-gradient(90deg, #00CFFF, #7B2FFF);
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+  }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 60px;
+    background: rgba(0,0,0,0.9);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .logo-text { font-size: 18px; font-weight: 700; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+  .container {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 120px 40px 80px;
+  }
+
+  .page-header {
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 4px 14px; border-radius: 100px;
+    border: 1px solid rgba(123,47,255,0.4);
+    background: rgba(123,47,255,0.08);
+    font-size: 12px; color: #A855F7;
+    margin-bottom: 20px;
+    text-transform: uppercase; letter-spacing: 1px; font-weight: 600;
+  }
+
+  h1 {
+    font-size: 40px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    margin-bottom: 12px;
+  }
+
+  .meta-info {
+    font-size: 14px;
+    color: var(--text3);
+  }
+
+  .meta-info span { color: var(--text2); }
+
+  .toc {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px 32px;
+    margin-bottom: 48px;
+  }
+
+  .toc h3 {
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--text3);
+    margin-bottom: 16px;
+  }
+
+  .toc ol { list-style: none; counter-reset: toc; }
+
+  .toc ol li {
+    counter-increment: toc;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .toc ol li:last-child { border: none; }
+
+  .toc ol li::before {
+    content: counter(toc) ". ";
+    color: #A855F7;
+    font-weight: 600;
+    font-size: 13px;
+  }
+
+  .toc ol li a {
+    color: var(--text2);
+    text-decoration: none;
+    font-size: 14px;
+    transition: color .2s;
+  }
+
+  .toc ol li a:hover { color: var(--text); }
+
+  .section {
+    margin-bottom: 48px;
+    scroll-margin-top: 100px;
+  }
+
+  h2 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  h2 .num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #7B2FFF, #A855F7);
+    font-size: 13px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #A855F7;
+    margin: 24px 0 10px;
+  }
+
+  p {
+    font-size: 15px;
+    color: var(--text2);
+    margin-bottom: 14px;
+  }
+
+  ul {
+    list-style: none;
+    margin: 10px 0 16px;
+  }
+
+  ul li {
+    font-size: 15px;
+    color: var(--text2);
+    padding: 6px 0 6px 20px;
+    position: relative;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+
+  ul li:last-child { border: none; }
+
+  ul li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: #A855F7;
+    font-size: 12px;
+  }
+
+  .highlight {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-left: 3px solid #7B2FFF;
+    border-radius: 0 12px 12px 0;
+    padding: 16px 20px;
+    margin: 20px 0;
+  }
+
+  .highlight p { margin: 0; font-size: 14px; }
+
+  .highlight.warn {
+    border-left-color: #FBBF24;
+  }
+
+  .highlight.warn p { color: #FBBF24; }
+
+  .table-wrap {
+    overflow-x: auto;
+    margin: 16px 0;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+
+  th {
+    text-align: left;
+    padding: 10px 16px;
+    background: var(--bg3);
+    color: var(--text3);
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  td {
+    padding: 12px 16px;
+    color: var(--text2);
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    vertical-align: top;
+  }
+
+  tr:last-child td { border: none; }
+
+  .contact-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px 32px;
+    margin-top: 16px;
+  }
+
+  .contact-card p { margin-bottom: 8px; font-size: 14px; }
+  .contact-card a { color: var(--cyan); text-decoration: none; }
+  .contact-card a:hover { text-decoration: underline; }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 32px 40px;
+    text-align: center;
+    max-width: 820px;
+    margin: 0 auto;
+  }
+
+  footer p { font-size: 13px; color: var(--text3); margin: 0; }
+
+  @media (max-width: 768px) {
+    nav { padding: 16px 24px; }
+    .container { padding: 100px 24px 60px; }
+    h1 { font-size: 28px; }
+    .toc { padding: 20px 24px; }
+    footer { padding: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo">
+    <svg width="28" height="28" viewBox="0 0 80 80" fill="none">
+      <defs><linearGradient id="g" x1="0" y1="0" x2="80" y2="80" gradientUnits="userSpaceOnUse"><stop stop-color="#00CFFF"/><stop offset="1" stop-color="#7B2FFF"/></linearGradient></defs>
+      <rect x="18" y="18" width="44" height="44" rx="12" stroke="url(#g)" stroke-width="4" fill="none"/>
+      <circle cx="29" cy="29" r="4" fill="url(#g)"/><circle cx="51" cy="29" r="4" fill="url(#g)"/>
+      <circle cx="29" cy="51" r="4" fill="url(#g)"/><circle cx="51" cy="51" r="4" fill="url(#g)"/>
+    </svg>
+    <span class="logo-text">AI4ALL</span>
+  </a>
+</nav>
+
+<div class="container">
+
+  <div class="page-header">
+    <div class="badge">Legal</div>
+    <h1>Termos de Uso</h1>
+    <p class="meta-info">
+      Versão <span>1.0</span> &nbsp;·&nbsp; Vigência a partir de <span>14 de junho de 2026</span> &nbsp;·&nbsp; AI4ALL Platform Ltda.
+    </p>
+  </div>
+
+  <div class="toc">
+    <h3>Índice</h3>
+    <ol>
+      <li><a href="#s1">Aceitação dos termos</a></li>
+      <li><a href="#s2">Definições</a></li>
+      <li><a href="#s3">A plataforma AI4ALL</a></li>
+      <li><a href="#s4">Cadastro e conta</a></li>
+      <li><a href="#s5">Planos e pagamento</a></li>
+      <li><a href="#s6">Uso aceitável</a></li>
+      <li><a href="#s7">Uso do WhatsApp Business API</a></li>
+      <li><a href="#s8">Agentes de IA — limitações e responsabilidades</a></li>
+      <li><a href="#s9">Dados e privacidade</a></li>
+      <li><a href="#s10">Propriedade intelectual</a></li>
+      <li><a href="#s11">Disponibilidade e SLA</a></li>
+      <li><a href="#s12">Suspensão e encerramento</a></li>
+      <li><a href="#s13">Limitação de responsabilidade</a></li>
+      <li><a href="#s14">Alterações nos termos</a></li>
+      <li><a href="#s15">Lei aplicável e foro</a></li>
+      <li><a href="#s16">Contato</a></li>
+    </ol>
+  </div>
+
+  <div class="highlight">
+    <p>Ao criar uma conta, contratar um plano ou utilizar qualquer funcionalidade da AI4ALL Platform, você concorda integralmente com estes Termos de Uso. Leia com atenção antes de prosseguir.</p>
+  </div>
+
+  <!-- 1 -->
+  <div class="section" id="s1">
+    <h2><span class="num">1</span> Aceitação dos termos</h2>
+    <p>Estes Termos de Uso constituem um contrato juridicamente vinculante entre você (pessoa física ou jurídica) e a <strong>AI4ALL Platform Ltda.</strong>, empresa brasileira desenvolvedora e operadora da plataforma AI4ALL.</p>
+    <p>Ao acessar ou usar a plataforma, você declara ter lido, compreendido e concordado com estes termos, bem como com nossa <a href="/privacidade" style="color:var(--cyan)">Política de Privacidade</a>. Se você está aceitando em nome de uma empresa, declara ter poderes para fazê-lo.</p>
+    <div class="highlight warn">
+      <p>Se você não concordar com estes termos, não utilize a plataforma AI4ALL.</p>
+    </div>
+  </div>
+
+  <!-- 2 -->
+  <div class="section" id="s2">
+    <h2><span class="num">2</span> Definições</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Termo</th>
+            <th>Significado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Plataforma</strong></td><td>O sistema AI4ALL, incluindo dashboard, agentes de IA, APIs e infraestrutura associada</td></tr>
+          <tr><td><strong>Cliente</strong></td><td>Pessoa física ou jurídica que contrata a AI4ALL para uso em seu negócio</td></tr>
+          <tr><td><strong>Usuário final</strong></td><td>Pessoa que interage com o agente de IA via WhatsApp, geralmente cliente do Cliente</td></tr>
+          <tr><td><strong>Agente de IA</strong></td><td>Assistente virtual autônomo configurado pela AI4ALL para atender o negócio do Cliente</td></tr>
+          <tr><td><strong>Tenant</strong></td><td>Instância isolada da plataforma dedicada a um Cliente específico</td></tr>
+          <tr><td><strong>Dashboard</strong></td><td>Interface web de gerenciamento disponível em app.ai4allplatform.com</td></tr>
+          <tr><td><strong>Handoff</strong></td><td>Transferência do atendimento do agente de IA para um operador humano</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 3 -->
+  <div class="section" id="s3">
+    <h2><span class="num">3</span> A plataforma AI4ALL</h2>
+    <p>A AI4ALL é uma plataforma SaaS (Software as a Service) que permite a pequenos e médios negócios implantar agentes de inteligência artificial para atendimento automatizado via WhatsApp. A plataforma inclui:</p>
+    <ul>
+      <li>Agente de IA autônomo para atendimento, agendamento e suporte via WhatsApp</li>
+      <li>Dashboard de gerenciamento de agenda, conversas e configurações</li>
+      <li>Sistema de handoff para transferência de atendimento ao operador humano</li>
+      <li>Memória de atendimento entre sessões para personalização</li>
+      <li>Notificações e alertas em tempo real</li>
+      <li>Relatórios e métricas de atendimento</li>
+    </ul>
+    <p>A AI4ALL reserva-se o direito de adicionar, modificar ou descontinuar funcionalidades com aviso prévio adequado aos Clientes.</p>
+  </div>
+
+  <!-- 4 -->
+  <div class="section" id="s4">
+    <h2><span class="num">4</span> Cadastro e conta</h2>
+
+    <h3>4.1 Requisitos</h3>
+    <ul>
+      <li>Ter capacidade legal para celebrar contratos (pessoa física maior de 18 anos ou pessoa jurídica regularmente constituída)</li>
+      <li>Fornecer informações verdadeiras, completas e atualizadas no cadastro</li>
+      <li>Manter um endereço de e-mail válido e acessível</li>
+      <li>Possuir um número de telefone válido para uso com WhatsApp Business</li>
+    </ul>
+
+    <h3>4.2 Segurança da conta</h3>
+    <ul>
+      <li>Você é responsável por manter a confidencialidade de suas credenciais de acesso</li>
+      <li>Notifique imediatamente a AI4ALL em caso de uso não autorizado da sua conta</li>
+      <li>A AI4ALL não se responsabiliza por danos causados por uso indevido de credenciais pelo Cliente ou por terceiros</li>
+      <li>É proibido compartilhar credenciais de acesso com terceiros não autorizados</li>
+    </ul>
+
+    <h3>4.3 Informações cadastrais</h3>
+    <p>O Cliente deve manter seus dados cadastrais atualizados. A AI4ALL pode suspender contas com informações incorretas ou desatualizadas após tentativa de contato.</p>
+  </div>
+
+  <!-- 5 -->
+  <div class="section" id="s5">
+    <h2><span class="num">5</span> Planos e pagamento</h2>
+
+    <h3>5.1 Planos disponíveis</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Plano</th><th>Descrição</th><th>Cobrança</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Starter</strong></td><td>Até 100 conversas/mês, 1 agente, dashboard básico</td><td>Gratuito</td></tr>
+          <tr><td><strong>Pro</strong></td><td>Conversas ilimitadas, handoff humano, lembretes proativos</td><td>R$ 297/mês</td></tr>
+          <tr><td><strong>Enterprise</strong></td><td>Múltiplos agentes, multi-tenant, SLA, onboarding dedicado</td><td>Sob consulta</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>5.2 Condições de pagamento</h3>
+    <ul>
+      <li>Planos pagos são cobrados mensalmente no início de cada período de uso</li>
+      <li>O não pagamento na data de vencimento pode resultar em suspensão do serviço após 5 dias corridos de carência</li>
+      <li>Preços podem ser reajustados com aviso prévio de 30 dias por e-mail</li>
+      <li>Não há reembolso proporcional por cancelamento no meio do período, salvo falha comprovada da plataforma</li>
+    </ul>
+
+    <h3>5.3 Cancelamento</h3>
+    <p>O Cliente pode cancelar seu plano a qualquer momento pelo dashboard ou por e-mail. O acesso continua ativo até o fim do período já pago. Dados são retidos por 90 dias após o cancelamento e então excluídos.</p>
+  </div>
+
+  <!-- 6 -->
+  <div class="section" id="s6">
+    <h2><span class="num">6</span> Uso aceitável</h2>
+
+    <h3>6.1 O Cliente se compromete a NÃO utilizar a plataforma para:</h3>
+    <ul>
+      <li>Enviar spam, mensagens não solicitadas ou comunicações em massa sem opt-in válido</li>
+      <li>Praticar ou facilitar fraudes, golpes ou engenharia social</li>
+      <li>Disseminar conteúdo ilegal, ofensivo, discriminatório ou que viole direitos de terceiros</li>
+      <li>Coletar dados de usuários finais para fins não relacionados ao atendimento prestado</li>
+      <li>Tentar contornar, desabilitar ou interferir nos mecanismos de segurança da plataforma</li>
+      <li>Realizar engenharia reversa, decompilar ou desmontar qualquer parte da plataforma</li>
+      <li>Revender ou sublicenciar o acesso à plataforma sem autorização expressa da AI4ALL</li>
+      <li>Sobrecarregar intencionalmente a infraestrutura (ataques DDoS, scrapers agressivos)</li>
+      <li>Usar os agentes de IA para induzir usuários finais a acreditar que estão falando com um humano quando solicitarem diretamente</li>
+    </ul>
+
+    <h3>6.2 Responsabilidade pelo conteúdo</h3>
+    <p>O Cliente é inteiramente responsável pelo conteúdo configurado nos agentes de IA (persona, regras, serviços) e pelas interações realizadas com seus usuários finais. A AI4ALL não monitora o conteúdo das conversas em tempo real.</p>
+  </div>
+
+  <!-- 7 -->
+  <div class="section" id="s7">
+    <h2><span class="num">7</span> Uso do WhatsApp Business API</h2>
+    <p>A AI4ALL utiliza a Meta WhatsApp Business Cloud API como canal de comunicação. Ao usar a plataforma, o Cliente também concorda com as políticas da Meta:</p>
+    <ul>
+      <li><a href="https://www.whatsapp.com/legal/business-policy" target="_blank" style="color:var(--cyan)">Política de Uso do WhatsApp Business</a></li>
+      <li><a href="https://developers.facebook.com/terms/" target="_blank" style="color:var(--cyan)">Termos de Plataforma da Meta</a></li>
+    </ul>
+
+    <h3>7.1 Obrigações do Cliente com a Meta</h3>
+    <ul>
+      <li>Obter opt-in válido dos usuários finais antes de enviar mensagens proativas</li>
+      <li>Respeitar solicitações de opt-out imediatamente</li>
+      <li>Usar templates de mensagem apenas para as finalidades aprovadas pela Meta</li>
+      <li>Não usar o canal para categorias de conteúdo proibidas pela Meta (apostas, drogas, armas, conteúdo adulto, etc.)</li>
+      <li>Manter quality rating adequado do número WhatsApp</li>
+    </ul>
+
+    <div class="highlight warn">
+      <p>Violações das políticas da Meta podem resultar em bloqueio do número WhatsApp do Cliente. A AI4ALL não se responsabiliza por bloqueios causados por uso indevido pelo Cliente.</p>
+    </div>
+  </div>
+
+  <!-- 8 -->
+  <div class="section" id="s8">
+    <h2><span class="num">8</span> Agentes de IA — limitações e responsabilidades</h2>
+
+    <h3>8.1 Natureza dos agentes</h3>
+    <p>Os agentes de IA da AI4ALL são sistemas autônomos baseados em modelos de linguagem de grande escala (LLMs). Embora altamente capazes, possuem limitações inerentes à tecnologia atual:</p>
+    <ul>
+      <li>Podem ocasionalmente produzir respostas incorretas, incompletas ou imprecisas</li>
+      <li>Não substituem julgamento humano em decisões críticas de saúde, segurança ou juridicas</li>
+      <li>O comportamento pode variar conforme a configuração da persona e as regras definidas pelo Cliente</li>
+      <li>Estão sujeitos às capacidades e limitações dos provedores de LLM utilizados (OpenRouter, DeepSeek)</li>
+    </ul>
+
+    <h3>8.2 Responsabilidade pelo agente</h3>
+    <p>O Cliente é responsável por:</p>
+    <ul>
+      <li>Configurar adequadamente a persona, regras e limites do agente</li>
+      <li>Monitorar as interações via dashboard e acionar handoff quando necessário</li>
+      <li>Garantir que o agente não ofereça serviços, preços ou condições que o negócio não possa cumprir</li>
+      <li>Informar seus usuários finais que estão interagindo com um agente de IA</li>
+    </ul>
+
+    <h3>8.3 Sistema de handoff</h3>
+    <p>A plataforma inclui mecanismo de transferência para operador humano (handoff). O Cliente deve monitorar as notificações de handoff e responder em tempo hábil. A AI4ALL não se responsabiliza por danos causados por demora na resposta humana após escalação.</p>
+  </div>
+
+  <!-- 9 -->
+  <div class="section" id="s9">
+    <h2><span class="num">9</span> Dados e privacidade</h2>
+    <p>O tratamento de dados pessoais no contexto da plataforma é regido pela nossa <a href="/privacidade" style="color:var(--cyan)">Política de Privacidade</a>, que integra estes Termos de Uso.</p>
+    <ul>
+      <li>O Cliente atua como controlador dos dados de seus usuários finais coletados via agente</li>
+      <li>A AI4ALL atua como operadora de dados em relação aos dados dos usuários finais do Cliente</li>
+      <li>O Cliente deve garantir base legal adequada (LGPD) para o tratamento dos dados de seus usuários</li>
+      <li>O Cliente não deve configurar o agente para coletar dados sensíveis desnecessários (ex: dados de saúde, financeiros, documentos) sem justificativa operacional clara</li>
+    </ul>
+  </div>
+
+  <!-- 10 -->
+  <div class="section" id="s10">
+    <h2><span class="num">10</span> Propriedade intelectual</h2>
+
+    <h3>10.1 Propriedade da AI4ALL</h3>
+    <p>A plataforma AI4ALL, incluindo código-fonte, algoritmos, design, marca, logotipos e documentação, é propriedade exclusiva da AI4ALL Platform Ltda. e protegida por leis de propriedade intelectual. Estes Termos não concedem ao Cliente nenhum direito de propriedade sobre a plataforma.</p>
+
+    <h3>10.2 Propriedade do Cliente</h3>
+    <p>O Cliente retém todos os direitos sobre os dados inseridos na plataforma (configurações, conteúdo da persona, dados de seus clientes). A AI4ALL não reivindica propriedade sobre esses dados.</p>
+
+    <h3>10.3 Feedback</h3>
+    <p>Caso o Cliente forneça sugestões, ideias ou feedback sobre a plataforma, a AI4ALL pode usá-los livremente para melhorar o serviço, sem obrigação de compensação.</p>
+  </div>
+
+  <!-- 11 -->
+  <div class="section" id="s11">
+    <h2><span class="num">11</span> Disponibilidade e SLA</h2>
+
+    <h3>11.1 Disponibilidade</h3>
+    <p>A AI4ALL se empenha para manter a plataforma disponível 24 horas por dia, 7 dias por semana. No entanto, podem ocorrer interrupções planejadas (manutenções) ou não planejadas (incidentes).</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Plano</th><th>SLA de disponibilidade</th><th>Suporte</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Starter</td><td>Melhor esforço</td><td>E-mail (resposta em 48h)</td></tr>
+          <tr><td>Pro</td><td>99% mensal</td><td>E-mail (resposta em 24h)</td></tr>
+          <tr><td>Enterprise</td><td>99,5% mensal</td><td>Canal dedicado + resposta em 4h</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>11.2 Manutenções</h3>
+    <p>Manutenções planejadas serão comunicadas com antecedência mínima de 24 horas, preferencialmente fora do horário comercial (22h–06h, horário de Brasília).</p>
+
+    <h3>11.3 Dependências externas</h3>
+    <p>A plataforma depende de serviços de terceiros (Meta WhatsApp API, provedores de LLM, infraestrutura de hospedagem). Indisponibilidades causadas por esses serviços externos não configuram descumprimento do SLA pela AI4ALL.</p>
+  </div>
+
+  <!-- 12 -->
+  <div class="section" id="s12">
+    <h2><span class="num">12</span> Suspensão e encerramento</h2>
+
+    <h3>12.1 Suspensão pela AI4ALL</h3>
+    <p>A AI4ALL pode suspender ou encerrar o acesso do Cliente, com ou sem aviso prévio, nos seguintes casos:</p>
+    <ul>
+      <li>Violação destes Termos de Uso ou das políticas da Meta</li>
+      <li>Inadimplência no pagamento após o período de carência</li>
+      <li>Uso da plataforma para atividades ilegais ou que causem dano a terceiros</li>
+      <li>Ameaça à segurança ou integridade da plataforma ou de outros Clientes</li>
+      <li>Solicitação de autoridade competente</li>
+    </ul>
+
+    <h3>12.2 Encerramento pelo Cliente</h3>
+    <p>O Cliente pode encerrar sua conta a qualquer momento pelo dashboard ou por e-mail para contato@ai4allplatform.com. Após o encerramento, os dados serão retidos por 90 dias e então excluídos conforme nossa Política de Privacidade.</p>
+
+    <h3>12.3 Efeitos do encerramento</h3>
+    <p>Com o encerramento da conta, o agente de IA é desativado imediatamente, o acesso ao dashboard é revogado e os dados serão excluídos após o prazo de retenção. O Cliente pode solicitar exportação dos dados antes do encerramento.</p>
+  </div>
+
+  <!-- 13 -->
+  <div class="section" id="s13">
+    <h2><span class="num">13</span> Limitação de responsabilidade</h2>
+
+    <p>Na máxima extensão permitida pela lei brasileira:</p>
+    <ul>
+      <li>A AI4ALL não se responsabiliza por danos indiretos, incidentais, especiais ou consequentes decorrentes do uso ou incapacidade de uso da plataforma</li>
+      <li>A responsabilidade total da AI4ALL em qualquer circunstância fica limitada ao valor pago pelo Cliente nos 3 meses anteriores ao evento que originou o dano</li>
+      <li>A AI4ALL não garante que os agentes de IA produzirão resultados específicos ou substituirão com perfeição o atendimento humano</li>
+      <li>O Cliente é responsável por validar as informações fornecidas pelos agentes antes de tomar decisões críticas</li>
+    </ul>
+
+    <div class="highlight">
+      <p>Nada nestes Termos exclui ou limita a responsabilidade da AI4ALL por dolo ou culpa grave, ou em casos onde a limitação de responsabilidade seja vedada pela legislação brasileira de proteção ao consumidor.</p>
+    </div>
+  </div>
+
+  <!-- 14 -->
+  <div class="section" id="s14">
+    <h2><span class="num">14</span> Alterações nos termos</h2>
+    <p>A AI4ALL pode atualizar estes Termos de Uso periodicamente. Alterações serão comunicadas por e-mail com antecedência mínima de 30 dias. O uso continuado da plataforma após a data de vigência das alterações constitui aceitação dos novos termos.</p>
+    <p>Para alterações substanciais (mudanças de preço, novas obrigações ou limitações de direitos), o Cliente terá a opção de encerrar a conta sem penalidade dentro do prazo de notificação.</p>
+  </div>
+
+  <!-- 15 -->
+  <div class="section" id="s15">
+    <h2><span class="num">15</span> Lei aplicável e foro</h2>
+    <p>Estes Termos são regidos pelas leis da República Federativa do Brasil. As partes elegem o foro da Comarca de Curitiba, estado do Paraná, para dirimir quaisquer controvérsias decorrentes destes Termos, com renúncia a qualquer outro, por mais privilegiado que seja.</p>
+    <p>Antes de acionar o Judiciário, as partes se comprometem a tentar resolver a controvérsia por meio de negociação direta por um prazo mínimo de 15 dias úteis.</p>
+  </div>
+
+  <!-- 16 -->
+  <div class="section" id="s16">
+    <h2><span class="num">16</span> Contato</h2>
+    <p>Para dúvidas, solicitações ou notificações relacionadas a estes Termos:</p>
+    <div class="contact-card">
+      <p><strong>AI4ALL Platform Ltda.</strong></p>
+      <p>E-mail geral: <a href="mailto:contato@ai4allplatform.com">contato@ai4allplatform.com</a></p>
+      <p>E-mail jurídico: <a href="mailto:legal@ai4allplatform.com">legal@ai4allplatform.com</a></p>
+      <p>Site: <a href="https://ai4allplatform.com">ai4allplatform.com</a></p>
+      <p style="margin-top:12px; color: var(--text3); font-size:13px;">
+        Para questões relacionadas a dados pessoais, consulte nossa 
+        <a href="/privacidade">Política de Privacidade</a> ou entre em contato com nosso DPO em 
+        <a href="mailto:privacidade@ai4allplatform.com">privacidade@ai4allplatform.com</a>.
+      </p>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2026 AI4ALL Platform Ltda. Estes termos são regidos pelas leis brasileiras, em especial o Código de Defesa do Consumidor (Lei nº 8.078/1990), o Marco Civil da Internet (Lei nº 12.965/2014) e a LGPD (Lei nº 13.709/2018).</p>
+</footer>
+
+</body>
+</html>

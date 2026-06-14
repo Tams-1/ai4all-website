@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Política de Privacidade — AI4ALL Platform</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --cyan: #00CFFF;
+    --purple: #7B2FFF;
+    --bg: #000000;
+    --bg2: #0A0A0F;
+    --bg3: #0F0F1A;
+    --border: rgba(255,255,255,0.08);
+    --text: #FFFFFF;
+    --text2: rgba(255,255,255,0.65);
+    --text3: rgba(255,255,255,0.35);
+    --grad: linear-gradient(90deg, #00CFFF, #7B2FFF);
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+  }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 60px;
+    background: rgba(0,0,0,0.9);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .logo-text { font-size: 18px; font-weight: 700; background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+  .container {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 120px 40px 80px;
+  }
+
+  .page-header {
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 4px 14px; border-radius: 100px;
+    border: 1px solid rgba(0,207,255,0.3);
+    background: rgba(0,207,255,0.06);
+    font-size: 12px; color: var(--cyan);
+    margin-bottom: 20px;
+    text-transform: uppercase; letter-spacing: 1px; font-weight: 600;
+  }
+
+  h1 {
+    font-size: 40px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    margin-bottom: 12px;
+  }
+
+  .meta-info {
+    font-size: 14px;
+    color: var(--text3);
+  }
+
+  .meta-info span {
+    color: var(--text2);
+  }
+
+  .toc {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px 32px;
+    margin-bottom: 48px;
+  }
+
+  .toc h3 {
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--text3);
+    margin-bottom: 16px;
+  }
+
+  .toc ol {
+    list-style: none;
+    counter-reset: toc;
+  }
+
+  .toc ol li {
+    counter-increment: toc;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .toc ol li:last-child { border: none; }
+
+  .toc ol li::before {
+    content: counter(toc) ". ";
+    color: var(--cyan);
+    font-weight: 600;
+    font-size: 13px;
+  }
+
+  .toc ol li a {
+    color: var(--text2);
+    text-decoration: none;
+    font-size: 14px;
+    transition: color .2s;
+  }
+
+  .toc ol li a:hover { color: var(--text); }
+
+  .section {
+    margin-bottom: 48px;
+    scroll-margin-top: 100px;
+  }
+
+  h2 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  h2 .num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    background: var(--grad);
+    font-size: 13px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--cyan);
+    margin: 24px 0 10px;
+  }
+
+  p {
+    font-size: 15px;
+    color: var(--text2);
+    margin-bottom: 14px;
+  }
+
+  ul {
+    list-style: none;
+    margin: 10px 0 16px;
+  }
+
+  ul li {
+    font-size: 15px;
+    color: var(--text2);
+    padding: 6px 0 6px 20px;
+    position: relative;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+
+  ul li:last-child { border: none; }
+
+  ul li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--cyan);
+    font-size: 12px;
+  }
+
+  .highlight {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--cyan);
+    border-radius: 0 12px 12px 0;
+    padding: 16px 20px;
+    margin: 20px 0;
+  }
+
+  .highlight p {
+    margin: 0;
+    font-size: 14px;
+  }
+
+  .contact-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px 32px;
+    margin-top: 16px;
+  }
+
+  .contact-card p {
+    margin-bottom: 8px;
+    font-size: 14px;
+  }
+
+  .contact-card a {
+    color: var(--cyan);
+    text-decoration: none;
+  }
+
+  .contact-card a:hover { text-decoration: underline; }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 32px 40px;
+    text-align: center;
+    max-width: 820px;
+    margin: 0 auto;
+  }
+
+  footer p {
+    font-size: 13px;
+    color: var(--text3);
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 16px 24px; }
+    .container { padding: 100px 24px 60px; }
+    h1 { font-size: 28px; }
+    .toc { padding: 20px 24px; }
+    footer { padding: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo">
+    <svg width="28" height="28" viewBox="0 0 80 80" fill="none">
+      <defs><linearGradient id="g" x1="0" y1="0" x2="80" y2="80" gradientUnits="userSpaceOnUse"><stop stop-color="#00CFFF"/><stop offset="1" stop-color="#7B2FFF"/></linearGradient></defs>
+      <rect x="18" y="18" width="44" height="44" rx="12" stroke="url(#g)" stroke-width="4" fill="none"/>
+      <circle cx="29" cy="29" r="4" fill="url(#g)"/><circle cx="51" cy="29" r="4" fill="url(#g)"/>
+      <circle cx="29" cy="51" r="4" fill="url(#g)"/><circle cx="51" cy="51" r="4" fill="url(#g)"/>
+    </svg>
+    <span class="logo-text">AI4ALL</span>
+  </a>
+</nav>
+
+<div class="container">
+
+  <div class="page-header">
+    <div class="badge">Legal</div>
+    <h1>Política de Privacidade</h1>
+    <p class="meta-info">
+      Versão <span>1.0</span> &nbsp;·&nbsp; Vigência a partir de <span>14 de junho de 2026</span> &nbsp;·&nbsp; AI4ALL Platform Ltda.
+    </p>
+  </div>
+
+  <div class="toc">
+    <h3>Índice</h3>
+    <ol>
+      <li><a href="#s1">Quem somos</a></li>
+      <li><a href="#s2">Dados que coletamos</a></li>
+      <li><a href="#s3">Como usamos os dados</a></li>
+      <li><a href="#s4">Base legal (LGPD)</a></li>
+      <li><a href="#s5">Compartilhamento de dados</a></li>
+      <li><a href="#s6">Armazenamento e segurança</a></li>
+      <li><a href="#s7">Retenção e exclusão</a></li>
+      <li><a href="#s8">Direitos do titular</a></li>
+      <li><a href="#s9">Cookies e tecnologias similares</a></li>
+      <li><a href="#s10">WhatsApp e Meta Cloud API</a></li>
+      <li><a href="#s11">Menores de idade</a></li>
+      <li><a href="#s12">Alterações nesta política</a></li>
+      <li><a href="#s13">Contato e DPO</a></li>
+    </ol>
+  </div>
+
+  <div class="highlight">
+    <p>Esta política descreve como a AI4ALL Platform coleta, usa, armazena e protege dados pessoais de clientes, usuários de nossos agentes de IA e visitantes do site, em conformidade com a Lei Geral de Proteção de Dados (LGPD — Lei nº 13.709/2018) e com as políticas da Meta Platforms para uso da WhatsApp Business Cloud API.</p>
+  </div>
+
+  <!-- 1 -->
+  <div class="section" id="s1">
+    <h2><span class="num">1</span> Quem somos</h2>
+    <p>A <strong>AI4ALL Platform</strong> é uma plataforma SaaS brasileira que oferece agentes de inteligência artificial para automação de atendimento e agendamento em pequenos e médios negócios, com comunicação via WhatsApp. Nossos clientes (empresas) contratam a plataforma para atender seus próprios clientes finais (usuários dos agentes).</p>
+    <p>Para fins desta política:</p>
+    <ul>
+      <li><strong>AI4ALL</strong> — operadora dos sistemas e controladora dos dados de cadastro de empresas clientes</li>
+      <li><strong>Empresa cliente</strong> — negócio que contrata a AI4ALL e é responsável pelos dados de seus próprios clientes</li>
+      <li><strong>Usuário final</strong> — pessoa que interage com o agente de IA via WhatsApp</li>
+    </ul>
+  </div>
+
+  <!-- 2 -->
+  <div class="section" id="s2">
+    <h2><span class="num">2</span> Dados que coletamos</h2>
+
+    <h3>2.1 Dados de empresas clientes (cadastro e uso da plataforma)</h3>
+    <ul>
+      <li>Nome, e-mail e telefone do responsável pela conta</li>
+      <li>Nome comercial e CNPJ da empresa</li>
+      <li>Dados de acesso ao dashboard (e-mail, senha criptografada)</li>
+      <li>Configurações operacionais (horários, serviços, persona do agente)</li>
+      <li>Logs de uso e métricas de atendimento</li>
+    </ul>
+
+    <h3>2.2 Dados de usuários finais (coletados via WhatsApp durante o atendimento)</h3>
+    <ul>
+      <li>Número de telefone WhatsApp (fornecido automaticamente pela Meta)</li>
+      <li>Nome de perfil WhatsApp (fornecido automaticamente pela Meta)</li>
+      <li>Conteúdo das mensagens trocadas com o agente de IA</li>
+      <li>Data, horário e tipo de serviço de agendamentos realizados</li>
+      <li>Preferências e histórico registrados pelo agente para personalização do atendimento</li>
+    </ul>
+
+    <h3>2.3 Dados técnicos do site</h3>
+    <ul>
+      <li>Endereço IP e dados de navegação (via cookies técnicos essenciais)</li>
+      <li>Tipo de dispositivo e navegador</li>
+      <li>Páginas visitadas e tempo de sessão</li>
+    </ul>
+  </div>
+
+  <!-- 3 -->
+  <div class="section" id="s3">
+    <h2><span class="num">3</span> Como usamos os dados</h2>
+    <ul>
+      <li>Prestar o serviço de agente de IA contratado pela empresa cliente</li>
+      <li>Processar agendamentos, cancelamentos e reagendamentos via WhatsApp</li>
+      <li>Permitir que o agente lembre preferências do usuário entre conversas</li>
+      <li>Notificar o operador humano em casos de escalação (handoff)</li>
+      <li>Exibir conversas e agenda no dashboard para o cliente da AI4ALL</li>
+      <li>Melhorar a qualidade e precisão dos agentes de IA (dados anonimizados)</li>
+      <li>Cumprir obrigações legais e regulatórias</li>
+      <li>Enviar comunicações sobre a conta (atualizações, alertas de segurança)</li>
+    </ul>
+
+    <div class="highlight">
+      <p><strong>Não vendemos dados.</strong> Não utilizamos dados de usuários finais para publicidade direcionada. Não compartilhamos dados com terceiros para fins comerciais sem consentimento explícito.</p>
+    </div>
+  </div>
+
+  <!-- 4 -->
+  <div class="section" id="s4">
+    <h2><span class="num">4</span> Base legal (LGPD)</h2>
+    <p>Todo tratamento de dados realizado pela AI4ALL possui base legal definida nos termos da LGPD:</p>
+    <ul>
+      <li><strong>Execução de contrato</strong> — dados de empresas clientes necessários para prestação do serviço contratado (art. 7º, V)</li>
+      <li><strong>Legítimo interesse</strong> — dados técnicos de navegação e logs de uso para segurança e melhoria do serviço (art. 7º, IX)</li>
+      <li><strong>Consentimento</strong> — quando o usuário final inicia uma conversa com o agente de IA, consente com o tratamento necessário ao atendimento (art. 7º, I)</li>
+      <li><strong>Cumprimento de obrigação legal</strong> — retenção de dados exigida por legislação aplicável (art. 7º, II)</li>
+    </ul>
+  </div>
+
+  <!-- 5 -->
+  <div class="section" id="s5">
+    <h2><span class="num">5</span> Compartilhamento de dados</h2>
+    <p>Compartilhamos dados apenas com:</p>
+    <ul>
+      <li><strong>Meta Platforms (WhatsApp Cloud API)</strong> — infraestrutura de mensagens, conforme os termos da plataforma e a política de privacidade da Meta</li>
+      <li><strong>OpenRouter / provedores de LLM</strong> — processamento de linguagem natural para geração das respostas do agente (dados tratados como operadores, sem retenção para treinamento)</li>
+      <li><strong>Hostinger</strong> — hospedagem do servidor em datacenter nos EUA, com proteções contratuais adequadas</li>
+      <li><strong>Empresa cliente</strong> — a empresa que contratou a AI4ALL tem acesso aos dados de seus próprios usuários finais via dashboard</li>
+    </ul>
+    <p>Todos os terceiros atuam como operadores de dados sob nossa instrução e estão sujeitos a obrigações contratuais de confidencialidade e segurança.</p>
+  </div>
+
+  <!-- 6 -->
+  <div class="section" id="s6">
+    <h2><span class="num">6</span> Armazenamento e segurança</h2>
+    <ul>
+      <li>Dados armazenados em servidor VPS dedicado (Hostinger, Boston, EUA)</li>
+      <li>Banco de dados SQLite com acesso restrito por contêiner Docker isolado</li>
+      <li>Comunicação protegida por TLS/HTTPS em todas as rotas (Let's Encrypt)</li>
+      <li>Autenticação via JWT com tokens de curta duração</li>
+      <li>Senhas armazenadas com hash bcrypt — nunca em texto simples</li>
+      <li>Secrets e tokens de API armazenados em variáveis de ambiente — nunca no código-fonte</li>
+      <li>Acesso ao servidor restrito a administradores autorizados via SSH</li>
+      <li>Repositório de código privado no GitHub</li>
+    </ul>
+  </div>
+
+  <!-- 7 -->
+  <div class="section" id="s7">
+    <h2><span class="num">7</span> Retenção e exclusão</h2>
+    <ul>
+      <li><strong>Conversas e agendamentos</strong> — retidos pelo período de vigência do contrato com a empresa cliente + 90 dias após encerramento</li>
+      <li><strong>Memória do agente</strong> — preferências e histórico do usuário retidos pelo período ativo do tenant; excluídos mediante solicitação</li>
+      <li><strong>Dados de cadastro da empresa cliente</strong> — retidos pelo período contratual + 5 anos para cumprimento de obrigações fiscais e legais</li>
+      <li><strong>Logs de segurança</strong> — retidos por 12 meses</li>
+    </ul>
+    <p>Após os prazos acima, os dados são excluídos de forma segura ou anonimizados irreversivelmente.</p>
+  </div>
+
+  <!-- 8 -->
+  <div class="section" id="s8">
+    <h2><span class="num">8</span> Direitos do titular</h2>
+    <p>Nos termos da LGPD (art. 18), você tem direito a:</p>
+    <ul>
+      <li><strong>Acesso</strong> — confirmar a existência de tratamento e obter cópia dos dados</li>
+      <li><strong>Correção</strong> — solicitar correção de dados incompletos, inexatos ou desatualizados</li>
+      <li><strong>Exclusão</strong> — solicitar a eliminação de dados desnecessários ou tratados em desconformidade</li>
+      <li><strong>Portabilidade</strong> — receber seus dados em formato estruturado e legível por máquina</li>
+      <li><strong>Oposição</strong> — opor-se ao tratamento realizado com base em legítimo interesse</li>
+      <li><strong>Revogação do consentimento</strong> — retirar o consentimento a qualquer momento</li>
+      <li><strong>Informação</strong> — ser informado sobre com quem seus dados são compartilhados</li>
+    </ul>
+    <p>Para exercer qualquer direito, entre em contato pelo e-mail: <strong>privacidade@ai4allplatform.com</strong>. Responderemos em até 15 dias úteis.</p>
+  </div>
+
+  <!-- 9 -->
+  <div class="section" id="s9">
+    <h2><span class="num">9</span> Cookies e tecnologias similares</h2>
+    <p>O site da AI4ALL utiliza apenas cookies técnicos essenciais para funcionamento da sessão e segurança. Não utilizamos cookies de rastreamento, publicidade ou analytics de terceiros.</p>
+    <ul>
+      <li><strong>Cookie de sessão</strong> — mantém o login ativo no dashboard (JWT)</li>
+      <li><strong>Cookie de preferência</strong> — salva configurações de interface</li>
+    </ul>
+    <p>Não é possível desativar cookies essenciais sem prejudicar o funcionamento da plataforma.</p>
+  </div>
+
+  <!-- 10 -->
+  <div class="section" id="s10">
+    <h2><span class="num">10</span> WhatsApp e Meta Cloud API</h2>
+    <p>A AI4ALL utiliza a <strong>Meta WhatsApp Business Cloud API</strong> como canal de comunicação. Ao interagir com um agente de IA hospedado na nossa plataforma via WhatsApp:</p>
+    <ul>
+      <li>Suas mensagens são transmitidas pela infraestrutura da Meta com criptografia de ponta a ponta entre seu dispositivo e os servidores da Meta</li>
+      <li>A Meta atua como processadora de dados no trânsito das mensagens</li>
+      <li>O conteúdo das mensagens é recebido pela AI4ALL via webhook seguro (HTTPS + HMAC-SHA256) e armazenado em nosso servidor para fins do atendimento</li>
+      <li>Não utilizamos os dados de conversas para treinar modelos de IA de forma identificável</li>
+      <li>A política de privacidade da Meta se aplica ao uso do aplicativo WhatsApp: <a href="https://www.whatsapp.com/legal/privacy-policy" target="_blank" style="color:var(--cyan)">whatsapp.com/legal/privacy-policy</a></li>
+    </ul>
+    <p>Para opt-out do atendimento automatizado, o usuário pode solicitar falar com um atendente humano a qualquer momento digitando "quero falar com um atendente" ou expressão similar.</p>
+  </div>
+
+  <!-- 11 -->
+  <div class="section" id="s11">
+    <h2><span class="num">11</span> Menores de idade</h2>
+    <p>A AI4ALL Platform não coleta intencionalmente dados de menores de 18 anos. Empresas clientes que atendam menores de idade são responsáveis por obter o consentimento dos responsáveis legais conforme a LGPD.</p>
+  </div>
+
+  <!-- 12 -->
+  <div class="section" id="s12">
+    <h2><span class="num">12</span> Alterações nesta política</h2>
+    <p>Esta política pode ser atualizada periodicamente para refletir mudanças em nossas práticas ou na legislação aplicável. Alterações relevantes serão comunicadas por e-mail aos clientes cadastrados com antecedência mínima de 30 dias. A versão vigente estará sempre disponível em <strong>ai4allplatform.com/privacidade</strong>.</p>
+  </div>
+
+  <!-- 13 -->
+  <div class="section" id="s13">
+    <h2><span class="num">13</span> Contato e DPO</h2>
+    <p>Para exercer seus direitos, tirar dúvidas ou reportar incidentes relacionados a dados pessoais:</p>
+    <div class="contact-card">
+      <p><strong>AI4ALL Platform</strong></p>
+      <p>Encarregado de Proteção de Dados (DPO): Thiago A. Medeiros Silva</p>
+      <p>E-mail: <a href="mailto:privacidade@ai4allplatform.com">privacidade@ai4allplatform.com</a></p>
+      <p>Site: <a href="https://ai4allplatform.com">ai4allplatform.com</a></p>
+      <p style="margin-top:12px; color: var(--text3); font-size:13px;">Também é possível registrar reclamações perante a Autoridade Nacional de Proteção de Dados (ANPD): <a href="https://www.gov.br/anpd" target="_blank">gov.br/anpd</a></p>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2026 AI4ALL Platform. Esta política está em conformidade com a LGPD (Lei nº 13.709/2018) e com as políticas da Meta Platforms para WhatsApp Business Cloud API.</p>
+</footer>
+
+</body>
+</html>
