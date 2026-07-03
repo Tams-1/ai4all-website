@@ -34,15 +34,13 @@ Na pasta `/docker/ai4all-website` existem arquivos **untracked** (não commitado
 - `Dockerfile` — define o build (nginx:alpine + copy dos estáticos).
 - `nginx.conf` — config do nginx (`root /usr/share/nginx/html`, `try_files $uri $uri/ $uri.html =404`).
 
-Além disso, o `index.html` na VPS tem uma alteração local **não commitada**: a meta tag de verificação de domínio do Facebook logo após o `<head>`:
+A meta tag de verificação de domínio do Facebook (logo após o `<head>`) **já está versionada no repo** (commit `ee83fdd`, 02/07/2026):
 
 ```html
 <meta name="facebook-domain-verification" content="e3jzix0pwxq0pixou03855dt0yfk6g" />
 ```
 
-Por isso, **todo `git pull` na VPS precisa preservar essa alteração local** (ver passo a passo abaixo). Se ela se perder, a verificação do Facebook quebra.
-
-> **TODO futuro:** commitar `Dockerfile`, `nginx.conf` e a meta tag do Facebook no repositório, para eliminar o "stash dance" e o risco de perder arquivos.
+> **TODO restante:** commitar `Dockerfile` e `nginx.conf` no repositório (hoje só existem na VPS, untracked). Eles não bloqueiam o `git pull`, mas versioná-los deixa o build 100% reproduzível a partir do repo.
 
 ---
 
@@ -58,20 +56,14 @@ git commit -m "descrição do fix"
 git push origin main
 ```
 
-### 3.2. Na VPS (pull preservando alterações locais)
+### 3.2. Na VPS (pull)
 
 ```bash
 cd /docker/ai4all-website
-
-git stash            # guarda a meta do Facebook (alteração local do index.html)
-git pull             # traz o commit novo (fast-forward)
-git stash pop        # reaplica a meta do Facebook
-
-# conferência rápida (ajuste o grep ao seu fix)
-grep -c facebook-domain-verification index.html   # esperado: 1
+git pull
 ```
 
-> Se o `git stash pop` acusar conflito, resolva no `index.html` (a área do `<head>` vs. o resto do arquivo raramente colidem) e siga.
+> A meta tag do Facebook agora está versionada (commit `ee83fdd`), então **não é mais preciso `git stash`**. Os arquivos `Dockerfile` e `nginx.conf` seguem untracked na VPS, mas não bloqueiam o `git pull`.
 
 ### 3.3. Rebuild + recriação do container
 
@@ -181,8 +173,8 @@ docker exec ai4all-website grep -o 'CNPJ[^<]*' /usr/share/nginx/html/index.html
 ### Depois de aplicado, todo deploy vira só
 
 ```bash
-cd /docker/ai4all-website && git stash && git pull && git stash pop
+cd /docker/ai4all-website && git pull
 cd /docker/ai4all-platform/infra/docker && docker compose up -d --build ai4all-website
 ```
 
-> **Melhor ainda (limpar as pendências da seção 2):** commitar `Dockerfile`, `nginx.conf` e a meta tag do Facebook no repo elimina o `git stash`/`pop` e o risco de perder arquivos untracked na VPS. O `.dockerignore` deste repo já impede que `DEPLOY.md` e `deploy/` sejam servidos publicamente pelo nginx.
+> A meta do Facebook já está versionada, então não precisa mais de `git stash`. Só resta commitar `Dockerfile`/`nginx.conf` (seção 2) para o build ser 100% reproduzível a partir do repo. O `.dockerignore` já impede que `DEPLOY.md` e `deploy/` sejam servidos pelo nginx.
