@@ -27,20 +27,20 @@
 
 ---
 
-## 2. Arquivos que vivem SÓ na VPS (não estão no repo)
+## 2. Arquivos do build (versionados)
 
-Na pasta `/docker/ai4all-website` existem arquivos **untracked** (não commitados) que são necessários para o build e **não podem ser apagados**:
+O build usa dois arquivos na raiz do repo — agora **versionados** (commit de 02/07/2026), não mais "soltos" na VPS:
 
-- `Dockerfile` — define o build (nginx:alpine + copy dos estáticos).
+- `Dockerfile` — a "receita" do build (nginx:alpine + copy dos estáticos).
 - `nginx.conf` — config do nginx (`root /usr/share/nginx/html`, `try_files $uri $uri/ $uri.html =404`).
 
-A meta tag de verificação de domínio do Facebook (logo após o `<head>`) **já está versionada no repo** (commit `ee83fdd`, 02/07/2026):
+A meta tag de verificação de domínio do Facebook (logo após o `<head>`) também está versionada (commit `ee83fdd`):
 
 ```html
 <meta name="facebook-domain-verification" content="e3jzix0pwxq0pixou03855dt0yfk6g" />
 ```
 
-> **TODO restante:** commitar `Dockerfile` e `nginx.conf` no repositório (hoje só existem na VPS, untracked). Eles não bloqueiam o `git pull`, mas versioná-los deixa o build 100% reproduzível a partir do repo.
+Com isso o repo é **autocontido**: um `git clone` traz tudo que o build precisa e o `git status` na VPS fica limpo.
 
 ---
 
@@ -63,7 +63,7 @@ cd /docker/ai4all-website
 git pull
 ```
 
-> A meta tag do Facebook agora está versionada (commit `ee83fdd`), então **não é mais preciso `git stash`**. Os arquivos `Dockerfile` e `nginx.conf` seguem untracked na VPS, mas não bloqueiam o `git pull`.
+> Meta do Facebook, `Dockerfile` e `nginx.conf` já estão versionados, então o `git pull` é direto — sem `git stash`.
 
 ### 3.3. Rebuild + recriação do container
 
@@ -177,4 +177,4 @@ cd /docker/ai4all-website && git pull
 cd /docker/ai4all-platform/infra/docker && docker compose up -d --build ai4all-website
 ```
 
-> A meta do Facebook já está versionada, então não precisa mais de `git stash`. Só resta commitar `Dockerfile`/`nginx.conf` (seção 2) para o build ser 100% reproduzível a partir do repo. O `.dockerignore` já impede que `DEPLOY.md` e `deploy/` sejam servidos pelo nginx.
+> Meta do Facebook, `Dockerfile` e `nginx.conf` já versionados → repo autocontido, deploy sem `git stash`. O `.dockerignore` impede que `DEPLOY.md` e `deploy/` sejam servidos pelo nginx.
