@@ -1,0 +1,7 @@
+# Não incluir docs/infra no web root servido pelo nginx
+.git
+.gitignore
+.dockerignore
+DEPLOY.md
+deploy/
+README.md

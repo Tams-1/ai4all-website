@@ -144,49 +144,45 @@ Por fim, abra no navegador as **4 URLs** (as duas `www` inclusive) e confirme o 
 
 ## 5. Fix definitivo — colocar o site no docker-compose
 
-Para o próximo deploy ser apenas `docker compose up -d --build ai4all-website` (sem recriar container na mão), adicionar o serviço abaixo ao `docker-compose.yml` do projeto `docker` (`/docker/ai4all-platform/infra/docker/docker-compose.yml`):
+Objetivo: fazer o site ser gerenciado pelo mesmo compose do `ai4all-bot`, para o deploy virar `docker compose up -d --build ai4all-website`.
 
-```yaml
-  ai4all-website:
-    build:
-      context: /docker/ai4all-website
-      dockerfile: Dockerfile
-    image: docker-ai4all-website
-    container_name: ai4all-website
-    restart: unless-stopped
-    networks:
-      - bridge
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.website.entrypoints=websecure"
-      - "traefik.http.routers.website.rule=Host(`ai4allplatform.com`) || Host(`www.ai4allplatform.com`) || Host(`ai4allplatform.com.br`) || Host(`www.ai4allplatform.com.br`)"
-      - "traefik.http.routers.website.tls.certresolver=letsencrypt"
-      - "traefik.http.services.website.loadbalancer.server.port=80"
-```
+O compose do `ai4all-bot` usa **`network_mode: bridge`** (não bloco `networks:`), então o serviço do site segue exatamente o mesmo padrão — sem declaração de rede externa. O serviço mantém o mesmo nome de router do Traefik (`website`) e a mesma rede (`bridge`), para não reemitir certificado nem mudar o roteamento.
 
-E garantir, na seção `networks:` do mesmo arquivo, a rede externa `bridge` (mesclar com a seção existente, não duplicar):
+O arquivo já mesclado e pronto está versionado neste repo em **`deploy/docker-compose.platform.yml`**. Ele é entregue via git de propósito: as labels do Traefik contêm hostnames `www` que **corrompem no copy/paste** (ver seção 4, item 1); trafegando como arquivo, o conteúdo chega intacto na VPS.
 
-```yaml
-networks:
-  bridge:
-    external: true
-    name: bridge
-```
-
-Depois de mesclar:
+### Aplicar (uma única vez)
 
 ```bash
+# 1) puxar o arquivo de referência na VPS
+cd /docker/ai4all-website
+git stash && git pull && git stash pop
+
+# 2) backup do compose atual e substituição pelo mesclado
+cp /docker/ai4all-platform/infra/docker/docker-compose.yml \
+   /docker/ai4all-platform/infra/docker/docker-compose.yml.bak
+cp /docker/ai4all-website/deploy/docker-compose.platform.yml \
+   /docker/ai4all-platform/infra/docker/docker-compose.yml
+
+# 3) validar sintaxe/serviços (deve listar ai4all-bot e ai4all-website)
 cd /docker/ai4all-platform/infra/docker
-docker compose config            # valida a sintaxe e mostra os serviços
-docker rm -f ai4all-website      # remove o container manual atual
+docker compose config --services
+
+# 4) remover o container manual e subir pelo compose
+docker rm -f ai4all-website
 docker compose up -d --build ai4all-website
+
+# 5) verificar (mesmos testes da seção 3.4)
+docker inspect ai4all-website --format '{{index .Config.Labels "traefik.http.routers.website.rule"}}' | grep -c '\['   # esperado: 0
+docker exec ai4all-website grep -o 'CNPJ[^<]*' /usr/share/nginx/html/index.html
 ```
 
-A partir daí, o deploy do site vira só:
+> `docker compose up -d ai4all-website` só afeta o serviço nomeado — o `ai4all-bot` não é recriado. Se algo der errado, restaure o backup: `cp docker-compose.yml.bak docker-compose.yml`.
+
+### Depois de aplicado, todo deploy vira só
 
 ```bash
 cd /docker/ai4all-website && git stash && git pull && git stash pop
 cd /docker/ai4all-platform/infra/docker && docker compose up -d --build ai4all-website
 ```
 
-> **Atenção ao integrar:** o compose já contém o serviço `ai4all-bot` e possivelmente uma seção `networks:`. Fazer o merge com cuidado (indentação de 2 espaços, sem duplicar chaves). Rodar `docker compose config` antes do `up` para validar.
+> **Melhor ainda (limpar as pendências da seção 2):** commitar `Dockerfile`, `nginx.conf` e a meta tag do Facebook no repo elimina o `git stash`/`pop` e o risco de perder arquivos untracked na VPS. O `.dockerignore` deste repo já impede que `DEPLOY.md` e `deploy/` sejam servidos publicamente pelo nginx.

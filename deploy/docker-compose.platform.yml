@@ -1,0 +1,80 @@
+# AI4ALL Platform — Docker Compose (Cloud API)
+#
+# Simplified: Evolution API removed, using Meta Cloud API directly.
+# Traefik handles HTTPS with automatic Let's Encrypt.
+#
+# ┌───────────────────────────────────────────────────────────────────────────┐
+# │ ATENÇÃO: este arquivo pertence a                                           │
+# │   /docker/ai4all-platform/infra/docker/docker-compose.yml                  │
+# │                                                                            │
+# │ A cópia versionada vive aqui no repo ai4all-website (deploy/) SÓ como      │
+# │ meio de transporte seguro: as labels do Traefik contêm hostnames "www"     │
+# │ que corrompem no copy/paste do chat/terminal. Trafegando como ARQUIVO      │
+# │ via git, o conteúdo chega intacto na VPS.                                   │
+# │                                                                            │
+# │ Para aplicar, ver DEPLOY.md seção 5.                                        │
+# └───────────────────────────────────────────────────────────────────────────┘
+services:
+  ai4all-bot:
+    build:
+      context: ../../
+      dockerfile: services/bot/Dockerfile
+    container_name: ai4all-bot
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - WHATSAPP_API_URL=${WHATSAPP_API_URL:-https://graph.facebook.com/v18.0}
+      - WHATSAPP_PHONE_NUMBER_ID=${WHATSAPP_PHONE_NUMBER_ID}
+      - WHATSAPP_ACCESS_TOKEN=${WHATSAPP_ACCESS_TOKEN}
+      - WHATSAPP_VERIFY_TOKEN=${WHATSAPP_VERIFY_TOKEN}
+      - WHATSAPP_APP_SECRET=${WHATSAPP_APP_SECRET}
+      - WHATSAPP_BUSINESS_ACCOUNT_ID=${WHATSAPP_BUSINESS_ACCOUNT_ID}
+      - TENANT_DATA_ROOT=/data/tenants
+      - DEFAULT_TENANT=${DEFAULT_TENANT:-lucas}
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+      - DB_PATH=/data/ai4all.db
+      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY}
+      - OPENROUTER_MODEL=${OPENROUTER_MODEL:-deepseek/deepseek-v4-flash}
+      - LLM_TEMPERATURE=${LLM_TEMPERATURE:-0.3}
+      - LLM_MAX_TOKENS=${LLM_MAX_TOKENS:-1024}
+      - LLM_TIMEOUT_SECONDS=${LLM_TIMEOUT_SECONDS:-30}
+      - DASHBOARD_ORIGIN=${DASHBOARD_ORIGIN:-https://app.srv1635962.hstgr.cloud}
+    volumes:
+      - tenant_data:/data
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.ai4all-bot.rule=Host(`bot.srv1635962.hstgr.cloud`)"
+      - "traefik.http.routers.ai4all-bot.entrypoints=websecure"
+      - "traefik.http.routers.ai4all-bot.tls.certresolver=letsencrypt"
+      - "traefik.http.services.ai4all-bot.loadbalancer.server.port=8000"
+    healthcheck:
+      test: ["CMD", "python3", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+    network_mode: bridge
+
+  # --- Site institucional (adicionado 02/07/2026) ---------------------------
+  # Antes rodava como container "solto" (docker run manual). Agora gerenciado
+  # pelo compose. Mantém o MESMO nome de router do Traefik ("website") e a
+  # MESMA rede (bridge) para não reemitir certificado nem mudar o roteamento.
+  ai4all-website:
+    build:
+      context: /docker/ai4all-website
+      dockerfile: Dockerfile
+    image: docker-ai4all-website
+    container_name: ai4all-website
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.website.rule=Host(`ai4allplatform.com`) || Host(`www.ai4allplatform.com`) || Host(`ai4allplatform.com.br`) || Host(`www.ai4allplatform.com.br`)"
+      - "traefik.http.routers.website.entrypoints=websecure"
+      - "traefik.http.routers.website.tls.certresolver=letsencrypt"
+      - "traefik.http.services.website.loadbalancer.server.port=80"
+    network_mode: bridge
+
+volumes:
+  tenant_data:
+    driver: local
