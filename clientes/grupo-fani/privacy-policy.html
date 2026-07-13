@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Política de Privacidade — Grupo Fani · AI4ALL Platform</title>
+<title>Política de Privacidade — Grupo Fani · Thaty (Assistente de IA)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -96,16 +96,20 @@ footer { border-top: 1px solid var(--border); padding: 40px 64px; display: flex;
     <p class="eyebrow">Grupo Fani · Documento Legal</p>
     <h1>Política de <span class="grad-text">Privacidade</span></h1>
     <div class="doc-meta">
-      <div class="doc-meta-item"><strong>Versão</strong> 1.0</div>
-      <div class="doc-meta-item"><strong>Vigência</strong> 07 de junho de 2026</div>
-      <div class="doc-meta-item"><strong>Atualização</strong> 07 de junho de 2026</div>
+      <div class="doc-meta-item"><strong>Versão</strong> 2.0</div>
+      <div class="doc-meta-item"><strong>Vigência</strong> 12 de julho de 2026</div>
+      <div class="doc-meta-item"><strong>Atualização</strong> 12 de julho de 2026</div>
     </div>
   </div>
 </div>
 
 <div class="doc-body">
 
-  <p>Este documento descreve como os dados pessoais das revendedoras são coletados, tratados e protegidos no âmbito do sistema de comunicação via WhatsApp operado pelo Grupo Fani, franqueado do Grupo Boticário, em conformidade com a Lei Geral de Proteção de Dados (LGPD — Lei nº 13.709/2018) e com o Manual de Operações e Anexo I do Grupo Boticário.</p>
+  <p>Este documento descreve como os dados pessoais das revendedoras são coletados, tratados e protegidos no âmbito da <strong>Thaty</strong> — uma assistente de inteligência artificial que conversa com as revendedoras pelo WhatsApp — operada pelo Grupo Fani, franqueado do Grupo Boticário, em conformidade com a Lei Geral de Proteção de Dados (LGPD — Lei nº 13.709/2018) e com o Manual de Operações e Anexo I do Grupo Boticário.</p>
+
+  <div class="highlight-box"><strong>A Thaty é uma inteligência artificial, não um atendente humano.</strong> A interação é de mão dupla: a revendedora escreve ou envia áudio e a Thaty responde. O conteúdo das mensagens é processado por um modelo de linguagem (LLM) para gerar as respostas, conforme detalhado nas seções 4 e 5.</div>
+
+  <div class="warning-box"><strong>Atualização substancial (versão 2.0):</strong> esta Política foi substancialmente alterada em relação à versão 1.0 para refletir o funcionamento da Thaty como agente de IA conversacional (processamento de texto e áudio por LLM, transferência internacional e finalidade analítica de churn). Nos termos da seção 11, alterações substanciais são comunicadas às revendedoras com antecedência mínima de 30 dias.</div>
 
   <h2>1. Identificação do Controlador</h2>
   <p>O tratamento de dados pessoais descrito nesta Política é realizado sob responsabilidade do seguinte Controlador:</p>
@@ -118,20 +122,25 @@ footer { border-top: 1px solid var(--border); padding: 40px 64px; display: flex;
     <li><strong>Encarregado de Proteção de Dados (DPO):</strong> Erik Simões</li>
     <li><strong>Contato do DPO:</strong> erik@didier.com.br</li>
   </ul>
-  <p>O Grupo Boticário (Boticário Franchising Ltda.) atua como Controlador dos dados cadastrais originais das revendedoras. O Grupo Fani atua como Operador no contexto deste sistema, tratando os dados conforme as instruções da franqueadora e as diretrizes do Manual de Operações.</p>
+  <p>O Grupo Boticário (Boticário Franchising Ltda.) atua como Controlador dos dados cadastrais originais das revendedoras. No contexto específico da Thaty — reativação comercial, atendimento conversacional e produção de métrica de churn — o <strong>Grupo Fani atua como Controlador</strong>, por definir as finalidades e os meios desse tratamento, observadas as diretrizes do Manual de Operações e do Anexo I da franqueadora.</p>
+  <p>Para o processamento das conversas, o Grupo Fani apoia-se em operadores: a <strong>AI4ALL Platform</strong>, operadora de tecnologia responsável pela Thaty; a Meta Platforms (WhatsApp Cloud API), operadora de transmissão das mensagens; e a OpenAI, Inc. (EUA), suboperadora de inteligência artificial, que processa o conteúdo textual e transcreve os áudios.</p>
 
   <h2>2. Dados Pessoais Tratados</h2>
   <h3>2.1 Categorias de dados</h3>
   <ul>
-    <li>Nome completo da revendedora</li>
-    <li>Número de telefone celular (WhatsApp)</li>
+    <li>Nome completo da revendedora (ao LLM é enviado apenas o <strong>primeiro nome</strong>)</li>
+    <li>Número de telefone celular (WhatsApp) — mascarado antes de qualquer envio ao LLM</li>
     <li>Histórico de atividade comercial (última compra, status cadastral)</li>
-    <li>Segmentação por perfil de crédito (quando aplicável para personalização da mensagem)</li>
+    <li><strong>Conteúdo das mensagens recebidas (inbound):</strong> texto livre escrito pela revendedora na conversa com a Thaty</li>
+    <li><strong>Áudio enviado pela revendedora:</strong> transcrito por serviço externo (OpenAI Whisper, EUA); o arquivo de áudio é <strong>descartado imediatamente após a transcrição</strong></li>
+    <li><strong>Transcrição do áudio</strong> resultante, tratada como texto da conversa</li>
+    <li><strong>Motivo de cessação classificado:</strong> a Thaty captura e classifica internamente o motivo de a revendedora ter parado de comprar (ver seção 3)</li>
     <li>Registro de consentimento (opt-in/opt-out) com data, hora e canal</li>
-    <li>Registro de interações com as mensagens enviadas (entrega, leitura, resposta)</li>
+    <li>Registro de interações com as mensagens (entrega, leitura, resposta)</li>
   </ul>
-  <h3>2.2 Dados não coletados</h3>
-  <p>Este sistema não coleta dados sensíveis (saúde, biometria, origem racial, convicções religiosas ou políticas), dados bancários, dados de menores de 18 anos, nem realiza monitoramento contínuo de localização.</p>
+  <p>Antes do envio ao suboperador de IA (OpenAI), os identificadores diretos — <strong>telefone, CPF e e-mail</strong> — são <strong>mascarados</strong>; ao LLM segue apenas o primeiro nome e o contexto mínimo necessário para gerar a resposta.</p>
+  <h3>2.2 Dados sensíveis</h3>
+  <p>Não <strong>solicitamos</strong>, não <strong>induzimos</strong> e não <strong>estruturamos</strong> dados sensíveis (saúde, biometria, origem racial, convicções religiosas ou políticas), e não os tratamos para nenhuma finalidade que dependa deles (art. 11 da LGPD). Como o canal é uma conversa aberta, caso a revendedora informe espontaneamente algum dado sensível, esse conteúdo permanece no histórico da conversa sob minimização, sem que lhe seja atribuída qualquer finalidade sensível. Também não tratamos dados bancários, dados de menores de 18 anos, nem realizamos monitoramento contínuo de localização.</p>
 
   <h2>3. Finalidade do Tratamento e Base Legal</h2>
   <p>Os dados são tratados exclusivamente para as finalidades abaixo, com as respectivas bases legais da LGPD:</p>
@@ -142,12 +151,16 @@ footer { border-top: 1px solid var(--border); padding: 40px 64px; display: flex;
       </thead>
       <tbody>
         <tr>
-          <td>Reativação comercial de revendedoras inativas mediante envio de mensagem via WhatsApp</td>
-          <td>Legítimo Interesse do Controlador (art. 7º, IX, LGPD), condicionado à validação prévia de opt-in</td>
+          <td>Reativação comercial e atendimento conversacional pela Thaty, incluindo o processamento do conteúdo de texto e áudio das respostas da revendedora</td>
+          <td><strong>Consentimento (opt-in) da titular — art. 7º, I, LGPD</strong>, registrado e rastreável. Base primária. O legítimo interesse (art. 7º, IX) só é invocado de forma subsidiária; reconhece-se que, para revendedoras já <strong>cessadas</strong>, o legítimo interesse é provavelmente insuficiente, sendo o consentimento a base adequada</td>
         </tr>
         <tr>
-          <td>Segmentação e personalização das mensagens com base em perfil cadastral</td>
-          <td>Legítimo Interesse, limitado às informações disponíveis no cadastro Boticário</td>
+          <td>Personalização da conversa com base em primeiro nome e contexto mínimo</td>
+          <td>Consentimento (art. 7º, I), limitado ao necessário para a interação</td>
+        </tr>
+        <tr>
+          <td><strong>Finalidade secundária (analítica):</strong> classificação do motivo de cessação e produção de métrica <strong>agregada e anonimizada</strong> de churn para o Controlador</td>
+          <td>Consentimento (art. 7º, I), abrangido pelo escopo do opt-in; o resultado é anonimizado, deixando de constituir dado pessoal após a agregação (art. 12)</td>
         </tr>
         <tr>
           <td>Registro e controle de consentimento (opt-in/opt-out)</td>
@@ -160,32 +173,46 @@ footer { border-top: 1px solid var(--border); padding: 40px 64px; display: flex;
       </tbody>
     </table>
   </div>
-  <div class="warning-box"><strong>Atenção:</strong> Nenhum envio de mensagem será realizado para revendedoras que não tenham fornecido opt-in válido. Esta é uma condição inegociável do sistema.</div>
+  <p>A Thaty <strong>captura e classifica internamente o motivo</strong> de a revendedora ter parado de comprar. Esse motivo é convertido em <strong>métrica agregada e anonimizada de churn</strong>, disponibilizada ao Grupo Fani para fins analíticos. Trata-se de finalidade secundária, coberta pelo escopo do consentimento (opt-in) e divulgada aqui em nome da transparência.</p>
+  <div class="warning-box"><strong>Atenção:</strong> Nenhuma mensagem será enviada, e nenhuma conversa será processada, para revendedoras que não tenham fornecido opt-in válido. Esta é uma condição inegociável.</div>
 
   <h2>4. Funcionamento do Sistema e Fluxo de Dados</h2>
   <h3>4.1 Fluxo de dados</h3>
+  <p>A Thaty não é um disparo one-way. O fluxo é conversacional e de mão dupla:</p>
   <ul>
-    <li>Os dados das revendedoras são importados da base do Grupo Boticário, já disponível ao Grupo Fani no contexto da relação comercial</li>
-    <li>Antes de qualquer envio, o sistema verifica a existência de opt-in válido para aquela revendedora</li>
-    <li>As mensagens são enviadas via API do WhatsApp Business (Meta Cloud API), utilizando templates previamente aprovados pelo Grupo Boticário e pela Meta</li>
-    <li>Os dados trafegam pelos servidores da Meta exclusivamente como canal de transmissão — nenhum dado é armazenado de forma permanente pela Meta para finalidade distinta da entrega da mensagem</li>
-    <li>Todos os registros de envio, consentimento e interação são armazenados em banco de dados hospedado no Brasil</li>
+    <li>Os dados cadastrais das revendedoras são importados da base do Grupo Boticário, já disponível ao Grupo Fani no contexto da relação comercial</li>
+    <li><strong>Opt-in gate:</strong> antes de qualquer contato, o sistema verifica a existência de opt-in válido para aquela revendedora</li>
+    <li><strong>Mensagem inicial:</strong> enviada via WhatsApp Business (Meta Cloud API) a partir de <strong>template previamente aprovado</strong> pelo Grupo Boticário e pela Meta</li>
+    <li><strong>Recebimento e processamento das respostas:</strong> quando a revendedora responde, seu texto (ou a transcrição do áudio) é enviado, com os identificadores diretos mascarados e apenas primeiro nome + contexto mínimo, a um modelo de linguagem (LLM) operado pela OpenAI, Inc. (EUA)</li>
+    <li><strong>Áudio:</strong> se a revendedora envia áudio, ele é transcrito por serviço externo (OpenAI Whisper, EUA) e o arquivo de áudio é <strong>descartado imediatamente após a transcrição</strong></li>
+    <li><strong>Resposta gerada pela Thaty:</strong> a IA produz a resposta, que é devolvida à revendedora pelo WhatsApp; a Thaty pode enviar o PDF do catálogo do ciclo e informar ações e promoções vigentes</li>
+    <li><strong>Opt-out hard gate:</strong> a qualquer momento a revendedora encerra a interação (ver seção 9), com efeito imediato</li>
+    <li>Os registros de conversa, consentimento e interação são <strong>armazenados em banco de dados hospedado no Brasil</strong></li>
   </ul>
-  <h3>4.2 Transferência internacional</h3>
-  <p>O envio de mensagens via WhatsApp implica o tráfego de dados pelos servidores da Meta Platforms, Inc. (EUA). Esta transferência é tecnicamente necessária para a entrega das mensagens e ocorre nos termos dos mecanismos de proteção aceitos pela ANPD, conforme cláusulas contratuais padrão da Meta. Os dados pessoais das revendedoras não são armazenados permanentemente nos servidores da Meta e não são utilizados por ela para finalidades diversas da entrega da mensagem.</p>
-  <p>Esta configuração está alinhada à interpretação adotada no âmbito do Anexo I (cláusula 2.9) do Manual de Operações do Grupo Boticário, que trata do armazenamento local e transferência internacional.</p>
+  <h3>4.2 Transferência internacional e processamento por IA</h3>
+  <p>É preciso distinguir <strong>armazenamento</strong> de <strong>processamento</strong>: os registros das conversas são <strong>armazenados no Brasil</strong>, mas o <strong>processamento do conteúdo da conversa ocorre nos Estados Unidos</strong>. Há, portanto, duas transferências internacionais (art. 33 da LGPD):</p>
+  <ul>
+    <li><strong>Meta Platforms, Inc. (EUA)</strong> — operador de transmissão das mensagens pelo WhatsApp Cloud API</li>
+    <li><strong>OpenAI, Inc. (EUA)</strong> — suboperador de IA que <strong>processa o conteúdo textual</strong> das mensagens e <strong>transcreve os áudios</strong>. A OpenAI não é mero canal: efetivamente trata o conteúdo para gerar as respostas</li>
+  </ul>
+  <p>Ao suboperador de IA é enviado <strong>apenas o primeiro nome e o contexto minimizado</strong> necessário à resposta; telefone, CPF e e-mail são <strong>mascarados antes do envio</strong>.</p>
+  <p>Essa transferência tem finalidade específica e limitada — conduzir a conversa de reativação —, com base legal no consentimento da titular (opt-in), e apoia-se no <strong>Data Processing Addendum (DPA) da OpenAI, Inc.</strong>, instrumento de salvaguarda previsto no art. 33 da LGPD, que define o provedor como operador e limita o tratamento às instruções do Grupo Fani. Conforme esse instrumento e as configurações de dados da conta, a OpenAI trata o conteúdo apenas para prestar o serviço e <strong>não o utiliza para finalidades próprias nem para treinar seus modelos</strong>.</p>
+  <p>Esta configuração observa a interpretação adotada no Anexo I (cláusula 2.9) do Manual de Operações do Grupo Boticário, que trata de armazenamento local e transferência internacional.</p>
 
   <h2>5. Compartilhamento de Dados</h2>
   <ul>
-    <li><strong>Meta Platforms, Inc.</strong> — canal de transmissão de mensagens via WhatsApp Business API, nos termos da Política de Privacidade e Termos de Serviço da própria Meta</li>
+    <li><strong>Meta Platforms, Inc. (EUA)</strong> — operador de transmissão das mensagens via WhatsApp Business API, nos termos da Política de Privacidade e Termos de Serviço da própria Meta</li>
+    <li><strong>OpenAI, Inc. (EUA)</strong> — suboperador de IA, que processa o conteúdo textual das mensagens e transcreve os áudios (apenas primeiro nome + contexto minimizado; identificadores diretos mascarados)</li>
+    <li><strong>AI4ALL Platform</strong> — operadora de tecnologia responsável pela Thaty, sem acesso autônomo aos dados para fins próprios</li>
     <li><strong>Grupo Boticário</strong> — na qualidade de Controlador original dos dados das revendedoras, para fins de auditoria, compliance e supervisão</li>
-    <li><strong>AI4ALL Platform</strong> — operadora tecnológica de automação e envio, sem acesso autônomo aos dados para fins próprios</li>
     <li><strong>Autoridades públicas</strong> — quando exigido por lei ou por ordem judicial</li>
   </ul>
-  <p>Não há venda, cessão gratuita ou compartilhamento dos dados para fins publicitários de terceiros.</p>
+  <p>Não há venda, cessão gratuita ou compartilhamento dos dados para fins publicitários de terceiros. Esta Política descreve o que <strong>o Grupo Fani e seus operadores fazem</strong> com os dados; o tratamento interno realizado por Meta e OpenAI é regido pelas respectivas políticas dessas empresas, que possuem seus próprios termos.</p>
 
   <h2>6. Retenção e Exclusão de Dados</h2>
   <p>Os dados de envio e interação serão retidos por 12 meses após o último contato, ou pelo prazo mínimo exigido pela legislação fiscal e comercial aplicável.</p>
+  <p><strong>Conteúdo das conversas e transcrições:</strong> o texto das mensagens e as transcrições de áudio são retidos pelo período necessário à continuidade do atendimento e à produção da métrica de churn, limitado ao prazo de 12 meses acima, após o qual são eliminados ou anonimizados.</p>
+  <p><strong>Áudio:</strong> os arquivos de áudio enviados pela revendedora são <strong>descartados imediatamente após a transcrição</strong>, não sendo retidos.</p>
   <p>Os registros de opt-in e opt-out são mantidos pelo período necessário para comprovação de conformidade junto à ANPD, ao Grupo Boticário e a eventuais auditorias.</p>
   <p>Ao término do contrato entre o Grupo Fani e o Grupo Boticário, ou quando solicitado, os dados serão devolvidos ou excluídos, inclusive de backups, conforme o item 3.5 do Anexo I.</p>
 
@@ -196,7 +223,7 @@ footer { border-top: 1px solid var(--border); padding: 40px 64px; display: flex;
     <li>Controle de logs de acesso aos dados pessoais (cláusula 2.8 do Anexo I)</li>
     <li>Mecanismo de throttle (limitação de volume de envio) para prevenção de abuso</li>
     <li>Segregação de ambientes de desenvolvimento e produção</li>
-    <li>Plano de Resposta a Incidentes documentado, com prazo de notificação ao titular e à ANPD em até 48 horas (art. 48 da LGPD)</li>
+    <li>Plano de Resposta a Incidentes documentado, com notificação ao titular e à ANPD no prazo definido pela regulamentação da ANPD (art. 48 da LGPD)</li>
     <li>NDA assinado por todos os colaboradores e prestadores de serviço com acesso aos dados</li>
   </ul>
 
@@ -224,13 +251,16 @@ footer { border-top: 1px solid var(--border); padding: 40px 64px; display: flex;
     Para cancelar o recebimento de mensagens a qualquer momento, responda <strong>SAIR</strong>, <strong>PARAR</strong> ou <strong>NÃO QUERO</strong> diretamente na conversa do WhatsApp, ou solicite pelo canal de atendimento indicado na seção 8. O opt-out é processado imediatamente e nenhuma nova mensagem será enviada após a solicitação.
   </div>
 
-  <h2>10. Rastreamento nas Mensagens</h2>
+  <h2>10. Interlocução por Inteligência Artificial</h2>
+  <p>A interlocutora nesta conversa é a <strong>Thaty, uma inteligência artificial</strong>, e não um atendente humano. As respostas são geradas automaticamente por um modelo de linguagem a partir do conteúdo enviado pela revendedora. A mensagem inicial parte de template aprovado; as demais respostas são geradas pela IA.</p>
+
+  <h2>11. Rastreamento nas Mensagens</h2>
   <p>As mensagens enviadas podem conter indicadores de entrega e leitura nativos do WhatsApp, controlados pela própria plataforma Meta. O sistema registra o status de entrega das mensagens (enviado, entregue, lido) para fins operacionais e de mensuração de resultados. Não são utilizados pixels de rastreamento, cookies ou tecnologias de monitoramento externas ao WhatsApp.</p>
 
-  <h2>11. Alterações nesta Política</h2>
-  <p>Esta Política pode ser atualizada periodicamente para refletir mudanças operacionais, legais ou regulatórias. A versão vigente estará sempre disponível em <strong>ai4allplatform.com/clientes/grupo-fani/privacy-policy</strong>. Alterações substanciais serão comunicadas às revendedoras com antecedência mínima de 30 dias.</p>
+  <h2>12. Alterações nesta Política</h2>
+  <p>Esta Política pode ser atualizada periodicamente para refletir mudanças operacionais, legais ou regulatórias. A versão vigente estará sempre disponível em <strong>www.ai4allplatform.com.br/clientes/grupo-fani/privacy-policy</strong>. Alterações substanciais serão comunicadas às revendedoras com antecedência mínima de 30 dias.</p>
 
-  <h2>12. Contato e Canal de Atendimento</h2>
+  <h2>13. Contato e Canal de Atendimento</h2>
   <ul>
     <li><strong>DPO — Encarregado de Proteção de Dados:</strong> Erik Simões</li>
     <li><strong>E-mail:</strong> erik@didier.com.br</li>
@@ -247,3 +277,4 @@ footer { border-top: 1px solid var(--border); padding: 40px 64px; display: flex;
 
 </body>
 </html>
+                                                  
